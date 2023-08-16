@@ -1,6 +1,7 @@
 <!-- src/routes/account/+page.svelte -->
 <script lang="ts">
-	import { enhance, type SubmitFunction } from '$app/forms';
+	import { enhance } from '$app/forms';
+	import type { SubmitFunction } from './$types.js';
 	import Avatar from './Avatar.svelte';
 
 	export let data;

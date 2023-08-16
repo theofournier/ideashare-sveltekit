@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidate } from '$app/navigation';
-	import type { PageData, SubmitFunction } from './$types';
+	import type { SubmitFunction } from '../logout/$types.js';
+	import type { PageData } from './$types';
 	export let data: PageData;
 
 	$: ({ user } = data);

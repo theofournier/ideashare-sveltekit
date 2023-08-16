@@ -20,7 +20,7 @@
 		<input
 			id="email"
 			name="email"
-			value={form?.email ?? ''}
+			value={form?.values.email ?? ''}
 			class="input"
 			type="email"
 			placeholder="Email"
