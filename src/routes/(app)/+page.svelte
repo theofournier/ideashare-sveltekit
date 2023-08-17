@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { invalidate } from '$app/navigation';
-	import type { SubmitFunction } from './(protected)/(auth)/logout/$types.js';
+	import type { SubmitFunction } from '../(lib)/logout/$types.js';
 	import type { PageData } from './$types';
 	export let data: PageData;
 
