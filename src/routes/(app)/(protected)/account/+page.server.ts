@@ -10,6 +10,14 @@ export const actions: Actions = {
 
 		const session = await getSession()
 
+		if(!session) {
+			return fail(401, {
+				firstName,
+				lastName,
+				avatarUrl
+			})
+		}
+
 		const { error } = await supabase.from('profiles').upsert({
 			id: session?.user.id,
 			first_name: firstName,
