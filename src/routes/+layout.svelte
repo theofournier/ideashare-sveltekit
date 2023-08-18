@@ -18,6 +18,9 @@
 				</label>
 				<ul tabindex="0" class="z-[1] menu menu-sm dropdown-content">
 					<li>
+						<a href="/login">Login</a>
+					</li>
+					<li>
 						<a href="/account">Account</a>
 					</li>
 					<li>
