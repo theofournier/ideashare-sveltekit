@@ -1,22 +1,11 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
-	import type { SubmitFunction } from './$types.js';
 
 	export let form;
-	let loading = false;
-
-	const handleSubmit: SubmitFunction = () => {
-		loading = true;
-		return async ({ update }) => {
-			update();
-			loading = false;
-		};
-	};
 </script>
 
 <div>
 	<h1>Register</h1>
-	<form action="?/register" method="POST" use:enhance={handleSubmit}>
+	<form action="?/register" method="POST">
 		<input
 			id="email"
 			name="email"
@@ -37,7 +26,7 @@
 		{#if form?.error}
 			<p>{form.error}</p>
 		{/if}
-		<button disabled={loading}>Register</button>
+		<button>Register</button>
 	</form>
 	<p>Already have an account? <a href="/login">Login here</a></p>
 </div>

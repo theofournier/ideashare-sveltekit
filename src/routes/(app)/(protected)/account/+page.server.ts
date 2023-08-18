@@ -1,43 +1,46 @@
-import { fail } from '@sveltejs/kit'
-import type { Actions } from './$types'
+import { fail } from '@sveltejs/kit';
+import type { Actions } from './$types';
 
 export const actions: Actions = {
 	update: async ({ request, locals: { supabase, getSession } }) => {
-		const formData = await request.formData()
-		const firstName = formData.get('firstName')?.toString()
-		const lastName = formData.get('lastName')?.toString()
-		const avatarUrl = formData.get('avatarUrl')?.toString()
+		const formData = await request.formData();
+		const firstName = formData.get('firstName')?.toString();
+		const lastName = formData.get('lastName')?.toString();
 
-		const session = await getSession()
+		const session = await getSession();
 
-		if(!session) {
+		if (!session) {
 			return fail(401, {
-				firstName,
-				lastName,
-				avatarUrl
-			})
+				error: 'Invalid session',
+				values: {
+					firstName,
+					lastName
+				}
+			});
 		}
 
 		const { error } = await supabase.from('profiles').upsert({
 			id: session?.user.id,
 			first_name: firstName,
 			last_name: lastName,
-			avatar_url: avatarUrl,
 			updated_at: new Date()
-		})
+		});
 
 		if (error) {
 			return fail(500, {
-				firstName,
-				lastName,
-				avatarUrl
-			})
+				error: 'Server error. Try again later',
+				values: {
+					firstName,
+					lastName
+				}
+			});
 		}
 
 		return {
-			firstName,
-			lastName,
-			avatarUrl
-		}
-	},
-}
+			values: {
+				firstName,
+				lastName
+			}
+		};
+	}
+};
