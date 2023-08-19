@@ -8,7 +8,12 @@
 
 <div class="min-h-full">
 	<div class="navbar">
-		<div class="flex-1"><a href="/" class="btn">IdeaShare</a></div>
+		<div class="flex-1">
+			<a href="/" class="btn">IdeaShare</a><a href="/posts" class="btn">Posts</a><a
+				href="/posts/create"
+				class="btn">Create</a
+			>
+		</div>
 		<div class="flex-none">
 			<div class="dropdown dropdown-end">
 				<label tabindex="0" class="btn btn-circle avatar">
