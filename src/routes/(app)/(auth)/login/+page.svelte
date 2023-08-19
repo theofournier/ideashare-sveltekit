@@ -10,7 +10,7 @@
 			id="email"
 			name="email"
 			value={form?.loginWithPassword.values.email ?? ''}
-			class="input"
+			class="input input-bordered"
 			type="email"
 			placeholder="Email"
 			required
@@ -18,7 +18,7 @@
 		<input
 			id="password"
 			name="password"
-			class="input"
+			class="input input-bordered"
 			type="password"
 			placeholder="Password"
 			required
@@ -26,7 +26,7 @@
 		{#if form?.loginWithPassword.error}
 			<p>{form.loginWithPassword.error}</p>
 		{/if}
-		<button>Login</button>
+		<button class="btn">Login</button>
 	</form>
-	<p>Don't have an account? <a href="/register">Register here</a></p>
+	<p>Don't have an account? <a href="/register" class='link'>Register here</a></p>
 </div>

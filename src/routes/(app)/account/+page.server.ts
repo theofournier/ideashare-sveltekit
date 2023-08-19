@@ -2,7 +2,7 @@ import { fail } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
-	update: async ({ request, locals: { supabase, getSession } }) => {
+	default: async ({ request, locals: { supabase, getSession } }) => {
 		const formData = await request.formData();
 		const firstName = formData.get('firstName')?.toString();
 		const lastName = formData.get('lastName')?.toString();
@@ -23,7 +23,6 @@ export const actions: Actions = {
 			id: session?.user.id,
 			first_name: firstName,
 			last_name: lastName,
-			updated_at: new Date()
 		});
 
 		if (error) {

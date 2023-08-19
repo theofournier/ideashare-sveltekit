@@ -10,13 +10,11 @@
 </script>
 
 <div>
-	<form method="POST" action="?/update">
+	<form method="POST">
 		<input
 			name="email"
 			id="email"
-			class="input"
-			type="email"
-			placeholder="Email"
+			class="input input-bordered"
 			value={session?.user?.email}
 			disabled
 		/>
@@ -25,11 +23,18 @@
 			id="firstName"
 			name="firstName"
 			type="text"
+			class="input input-bordered"
 			value={form?.values.firstName ?? firstName}
 		/>
 
-		<input id="lastName" name="lastName" type="text" value={form?.values.lastName ?? lastName} />
+		<input
+			id="lastName"
+			name="lastName"
+			type="text"
+			class="input input-bordered"
+			value={form?.values.lastName ?? lastName}
+		/>
 
-		<button>Update my profile</button>
+		<button class="btn">Update my profile</button>
 	</form>
 </div>

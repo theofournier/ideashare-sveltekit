@@ -5,9 +5,9 @@
 <div>
 	Welcome
 	<form method="POST">
-		<div id="category" class="collapse">
+		<div id="category" class="collapse bg-base-200 my-4">
 			<input type="radio" name="create-post" checked/>
-			<div class="collapse-title">Choose a post category</div>
+			<div class="collapse-title text-xl">Choose a post category</div>
 			<div class="collapse-content flex">
 				<div class="card shadow-lg">
 					<div class="card-body">
@@ -23,9 +23,9 @@
 				</div>
 			</div>
 		</div>
-		<div id="info" class="collapse">
+		<div id="info" class="collapse bg-base-200 my-4">
 			<input type="radio" name="create-post" />
-			<div class="collapse-title">Give some information</div>
+			<div class="collapse-title text-xl">Give some information</div>
 			<div class="collapse-content">
 				<input type="text" placeholder="Title" class="input input-bordered" name="title" />
 				<textarea
@@ -40,9 +40,9 @@
 				/>
 			</div>
 		</div>
-		<div id="labels" class="collapse">
+		<div id="labels" class="collapse bg-base-200 my-4">
 			<input type="radio" name="create-post" />
-			<div class="collapse-title">Select labels</div>
+			<div class="collapse-title text-xl">Select labels</div>
 			<div class="collapse-content">
 				<div class="form-control">
 					<label class="label cursor-pointer">
@@ -52,9 +52,9 @@
 				</div>
 			</div>
 		</div>
-		<div id="additional-info" class="collapse">
+		<div id="additional-info" class="collapse bg-base-200 my-4">
 			<input type="radio" name="create-post" />
-			<div class="collapse-title">Additional info</div>
+			<div class="collapse-title text-xl">Additional info</div>
 			<div class="collapse-content">
 				<select class="select select-bordered" name="language">
 					<option>English</option>
@@ -74,9 +74,9 @@
 				/>
 			</div>
 		</div>
-		<div id="share-options" class="collapse">
+		<div id="share-options" class="collapse bg-base-200 my-4">
 			<input type="radio" name="create-post" />
-			<div class="collapse-title">Share options</div>
+			<div class="collapse-title text-xl">Share options</div>
 			<div class="collapse-content">
 				<div class="form-control">
 					<label class="label cursor-pointer">
@@ -107,7 +107,7 @@
 					<div class="form-control">
 						<label class="label cursor-pointer">
 							<span class="label-text">Everyone</span>
-							<input type="radio" name="help" class="radio" />
+							<input type="radio" name="help" class="radio" checked/>
 						</label>
 					</div>
 					<div class="form-control">
@@ -125,6 +125,6 @@
 				</div>
 			</div>
 		</div>
-		<button>Save</button>
+		<button class="btn">Save</button>
 	</form>
 </div>

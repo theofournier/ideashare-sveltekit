@@ -21,7 +21,7 @@
 						<img src="account_icon.svg" />
 					</div>
 				</label>
-				<ul tabindex="0" class="z-[1] menu menu-sm dropdown-content">
+				<ul tabindex="0" class="bg-base-100 z-[1] menu menu-sm dropdown-content">
 					<li>
 						<a href="/login">Login</a>
 					</li>

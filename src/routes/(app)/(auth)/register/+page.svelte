@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	export let form;
 </script>
 
@@ -10,7 +9,7 @@
 			id="email"
 			name="email"
 			value={form?.values.email ?? ''}
-			class="input"
+			class="input input-bordered"
 			type="email"
 			placeholder="Email"
 			required
@@ -18,7 +17,7 @@
 		<input
 			id="password"
 			name="password"
-			class="input"
+			class="input input-bordered"
 			type="password"
 			placeholder="Password"
 			required
@@ -26,7 +25,7 @@
 		{#if form?.error}
 			<p>{form.error}</p>
 		{/if}
-		<button>Register</button>
+		<button class="btn">Register</button>
 	</form>
-	<p>Already have an account? <a href="/login">Login here</a></p>
+	<p>Already have an account? <a href="/login" class="link">Login here</a></p>
 </div>
