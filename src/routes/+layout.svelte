@@ -1,5 +1,7 @@
 <script>
 	import '../app.css';
+
+	export let data;
 </script>
 
 <svelte:head>
@@ -15,6 +17,7 @@
 			><a href="/profiles" class="btn">Profiles</a>
 		</div>
 		<div class="flex-none">
+			<p>{data.user?.first_name} {data.user?.last_name}</p>
 			<div class="dropdown dropdown-end">
 				<label tabindex="0" class="btn btn-circle avatar">
 					<div class="w-10 rounded-full" />

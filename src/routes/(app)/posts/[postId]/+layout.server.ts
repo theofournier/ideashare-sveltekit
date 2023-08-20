@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { LayoutServerLoad } from './$types';
 
 export const load = (async ({ locals: { supabase }, params }) => {
 	const { data, error } = await supabase
@@ -11,9 +11,6 @@ export const load = (async ({ locals: { supabase }, params }) => {
             labels(
                 *
             )
-        ),
-        posts_notes(
-            *
         )
     `
 		)
@@ -23,4 +20,4 @@ export const load = (async ({ locals: { supabase }, params }) => {
 		return { post: data[0] };
 	}
 	return { post: null };
-}) satisfies PageServerLoad;
+}) satisfies LayoutServerLoad;
