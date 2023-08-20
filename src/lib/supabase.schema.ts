@@ -119,6 +119,43 @@ export interface Database {
           }
         ]
       }
+      posts_comments: {
+        Row: {
+          created_at: string
+          id: string
+          post_id: string
+          text: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          post_id: string
+          text: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          post_id?: string
+          text?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_comments_post_id_fkey"
+            columns: ["post_id"]
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "posts_comments_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       posts_labels: {
         Row: {
           label_id: string
@@ -150,18 +187,21 @@ export interface Database {
       posts_notes: {
         Row: {
           created_at: string | null
+          id: string
           post_id: string
           text: string | null
           user_id: string
         }
         Insert: {
           created_at?: string | null
+          id?: string
           post_id: string
           text?: string | null
           user_id: string
         }
         Update: {
           created_at?: string | null
+          id?: string
           post_id?: string
           text?: string | null
           user_id?: string
