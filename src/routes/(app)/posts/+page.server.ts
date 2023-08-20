@@ -3,9 +3,6 @@ import type { PageServerLoad } from './$types';
 export const load = (async ({ locals: { supabase } }) => {
 	const { data, error } = await supabase.from('posts').select(`
         *,
-        posts_shareoptions(
-            *
-        ),
         posts_labels(
             *,
             labels(
@@ -16,5 +13,6 @@ export const load = (async ({ locals: { supabase } }) => {
             *
         )
     `);
+	console.log('POSTS', error);
 	return { posts: data };
 }) satisfies PageServerLoad;

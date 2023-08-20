@@ -19,9 +19,12 @@ export const actions: Actions = {
 				long_desc: formData.get('longDescription')?.toString(),
 				short_desc: formData.get('shortDescription')?.toString(),
 				title: formData.get('title')?.toString(),
-				user_id: session.user.id
+				user_id: session.user.id,
+				privacy: 'public'
 			})
 			.select();
+
+		console.log('CREATE POST', { errorPost, data });
 
 		if (data && data.length > 0) {
 			const post = data[0];
@@ -35,9 +38,7 @@ export const actions: Actions = {
 				.from('posts_labels')
 				.insert([{ post_id: post.id, label_id: 'mobile' }]);
 
-			const { error: errorShareOption } = await supabase
-				.from('posts_shareoptions')
-				.insert([{ post_id: post.id, privacy: 'public' }]);
+			console.log('CREATE NOTE / LABEL', { errorNote, errorLabel });
 		}
 	}
 };

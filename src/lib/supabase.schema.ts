@@ -42,43 +42,73 @@ export interface Database {
       }
       posts: {
         Row: {
+          anonymous: boolean | null
+          comment: string | null
+          contact: string | null
           created_at: string
+          follow: string | null
+          help: string | null
           id: string
           images: Json[] | null
           language: string | null
+          like: string | null
+          link_post: string | null
           long_desc: string | null
+          privacy: string | null
           short_desc: string | null
+          status: string | null
           title: string | null
           type: string
           updated_at: string | null
           url_links: string[] | null
           user_id: string | null
+          work: string | null
         }
         Insert: {
+          anonymous?: boolean | null
+          comment?: string | null
+          contact?: string | null
           created_at?: string
+          follow?: string | null
+          help?: string | null
           id?: string
           images?: Json[] | null
           language?: string | null
+          like?: string | null
+          link_post?: string | null
           long_desc?: string | null
+          privacy?: string | null
           short_desc?: string | null
+          status?: string | null
           title?: string | null
           type: string
           updated_at?: string | null
           url_links?: string[] | null
           user_id?: string | null
+          work?: string | null
         }
         Update: {
+          anonymous?: boolean | null
+          comment?: string | null
+          contact?: string | null
           created_at?: string
+          follow?: string | null
+          help?: string | null
           id?: string
           images?: Json[] | null
           language?: string | null
+          like?: string | null
+          link_post?: string | null
           long_desc?: string | null
+          privacy?: string | null
           short_desc?: string | null
+          status?: string | null
           title?: string | null
           type?: string
           updated_at?: string | null
           url_links?: string[] | null
           user_id?: string | null
+          work?: string | null
         }
         Relationships: [
           {
@@ -147,55 +177,6 @@ export interface Database {
             foreignKeyName: "posts_notes_user_id_fkey"
             columns: ["user_id"]
             referencedRelation: "profiles"
-            referencedColumns: ["id"]
-          }
-        ]
-      }
-      posts_shareoptions: {
-        Row: {
-          anonymous: boolean | null
-          comment: string | null
-          contact: string | null
-          follow: string | null
-          help: string | null
-          like: string | null
-          link_post: string | null
-          post_id: string
-          privacy: string | null
-          status: string | null
-          work: string | null
-        }
-        Insert: {
-          anonymous?: boolean | null
-          comment?: string | null
-          contact?: string | null
-          follow?: string | null
-          help?: string | null
-          like?: string | null
-          link_post?: string | null
-          post_id: string
-          privacy?: string | null
-          status?: string | null
-          work?: string | null
-        }
-        Update: {
-          anonymous?: boolean | null
-          comment?: string | null
-          contact?: string | null
-          follow?: string | null
-          help?: string | null
-          like?: string | null
-          link_post?: string | null
-          post_id?: string
-          privacy?: string | null
-          status?: string | null
-          work?: string | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "posts_shareoptions_post_id_fkey"
-            columns: ["post_id"]
-            referencedRelation: "posts"
             referencedColumns: ["id"]
           }
         ]

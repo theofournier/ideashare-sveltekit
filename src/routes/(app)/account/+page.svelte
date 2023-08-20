@@ -24,6 +24,7 @@
 			name="firstName"
 			type="text"
 			class="input input-bordered"
+			placeholder="First name"
 			value={form?.values.firstName ?? firstName}
 		/>
 
@@ -32,6 +33,7 @@
 			name="lastName"
 			type="text"
 			class="input input-bordered"
+			placeholder="Last name"
 			value={form?.values.lastName ?? lastName}
 		/>
 
