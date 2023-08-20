@@ -12,7 +12,7 @@
 			<a href="/" class="btn">IdeaShare</a><a href="/posts" class="btn">Posts</a><a
 				href="/posts/create"
 				class="btn">Create</a
-			>
+			><a href="/profiles" class="btn">Profiles</a>
 		</div>
 		<div class="flex-none">
 			<div class="dropdown dropdown-end">
