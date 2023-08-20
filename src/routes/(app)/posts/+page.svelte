@@ -17,6 +17,7 @@
 					<p>{post.language}</p>
 					<p>{post.short_desc}</p>
 					<p>{post.long_desc}</p>
+					<p>{post.privacy}</p>
 					{#if post.url_links}
 						{#each post.url_links as link}
 							<p>{link}</p>
@@ -24,7 +25,6 @@
 					{/if}
 					{#if post.posts_labels}
 						{#each post.posts_labels as label}
-							<p>{label.label_id}</p>
 							<p>{label.labels?.name}</p>
 						{/each}
 					{/if}
@@ -32,9 +32,6 @@
 						{#each post.posts_notes as note}
 							<p>{note.text}</p>
 						{/each}
-					{/if}
-					{#if post.posts_shareoptions}
-						<p>{post.posts_shareoptions.privacy}</p>
 					{/if}
 					<a href={`/posts/${post.id}`} class="btn">See post</a>
 				</div>

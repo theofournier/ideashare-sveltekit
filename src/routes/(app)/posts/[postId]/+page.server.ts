@@ -6,9 +6,6 @@ export const load = (async ({ locals: { supabase }, params }) => {
 		.select(
 			`
         *,
-        posts_shareoptions(
-            *
-        ),
         posts_labels(
             *,
             labels(
@@ -21,6 +18,7 @@ export const load = (async ({ locals: { supabase }, params }) => {
     `
 		)
 		.eq('id', params.postId);
+	console.log('POST', params.postId, error);
 	if (data && data.length > 0) {
 		return { post: data[0] };
 	}

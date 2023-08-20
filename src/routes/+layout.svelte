@@ -17,9 +17,7 @@
 		<div class="flex-none">
 			<div class="dropdown dropdown-end">
 				<label tabindex="0" class="btn btn-circle avatar">
-					<div class="w-10 rounded-full">
-						<img src="account_icon.svg" />
-					</div>
+					<div class="w-10 rounded-full" />
 				</label>
 				<ul tabindex="0" class="bg-base-100 z-[1] menu menu-sm dropdown-content">
 					<li>
