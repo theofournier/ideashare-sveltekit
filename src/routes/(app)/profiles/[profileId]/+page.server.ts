@@ -1,11 +1,7 @@
-import type { PageServerLoad } from './$types';
+import { profileActions } from '$lib/server/profileActions';
+import type { Actions, PageServerLoad } from './$types';
 
 export const load = (async ({ locals: { supabase }, params }) => {
-	const { data: profile, error: errorProfile } = await supabase
-		.from('profiles')
-		.select(`*`)
-		.eq('id', params.profileId);
-
 	const { data: posts, error: errorPosts } = await supabase
 		.from('posts')
 		.select(
@@ -23,9 +19,10 @@ export const load = (async ({ locals: { supabase }, params }) => {
     `
 		)
 		.eq('user_id', params.profileId);
-	console.log('PROFILE', params.profileId, { errorProfile, errorPosts });
-	if (profile && profile.length > 0) {
-		return { profile: profile[0], posts };
-	}
-	return { profile: null, posts: null };
+	console.log('PROFILE POSTS', params.profileId, errorPosts);
+	return { posts };
 }) satisfies PageServerLoad;
+
+export const actions: Actions = {
+	...profileActions
+};

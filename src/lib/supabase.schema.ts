@@ -391,6 +391,37 @@ export interface Database {
           }
         ]
       }
+      profiles_follows: {
+        Row: {
+          created_at: string
+          follower_user_id: string
+          following_user_id: string
+        }
+        Insert: {
+          created_at?: string
+          follower_user_id: string
+          following_user_id: string
+        }
+        Update: {
+          created_at?: string
+          follower_user_id?: string
+          following_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_follows_follower_user_id_fkey"
+            columns: ["follower_user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "profiles_follows_following_user_id_fkey"
+            columns: ["following_user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
     }
     Views: {
       [_ in never]: never

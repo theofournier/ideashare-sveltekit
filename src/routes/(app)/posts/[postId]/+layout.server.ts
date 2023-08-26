@@ -18,10 +18,11 @@ export const load = (async ({ locals: { supabase }, params }) => {
         profiles!posts_user_id_fkey(*)
     `
 		)
-		.eq('id', params.postId);
+		.eq('id', params.postId)
+		.single();
 	console.log('POST', params.postId, error);
-	if (data && data.length > 0) {
-		return { post: data[0] };
+	if (data) {
+		return { post: data };
 	}
 	return { post: null };
 }) satisfies LayoutServerLoad;
