@@ -13,9 +13,7 @@ export const load = (async ({ locals: { supabase }, params }) => {
                 *
             )
         ),
-        posts_notes(
-            *
-        )
+		profiles!posts_user_id_fkey(*)
     `
 		)
 		.eq('user_id', params.profileId);
