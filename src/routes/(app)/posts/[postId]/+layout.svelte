@@ -42,6 +42,7 @@
 				>{isWork ? 'Unwork' : 'Work'} {post.posts_works?.length ?? 0}</button
 			>
 		</form>
+		<a href={`/posts/${$page.params.postId}/edit`} class="btn">Edit</a>
 		<div class="tabs tabs-boxed">
 			<a
 				href={`/posts/${$page.params.postId}`}
