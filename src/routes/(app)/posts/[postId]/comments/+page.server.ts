@@ -1,5 +1,6 @@
 import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import { postActions } from '$lib/server/postActions';
 
 export const load: PageServerLoad = async ({ locals: { supabase }, params }) => {
 	const { data, error } = await supabase
@@ -37,7 +38,7 @@ export const actions: Actions = {
 
 		console.log('CREATE COMMENT', error);
 	},
-	delete: async ({ request, locals: { supabase, getSession }, params }) => {
+	delete: async ({ request, locals: { supabase, getSession } }) => {
 		const session = await getSession();
 		if (!session) {
 			return fail(401, {
@@ -56,5 +57,6 @@ export const actions: Actions = {
 		const { error } = await supabase.from('posts_comments').delete().eq('id', id);
 
 		console.log('DELETE COMMENT', error);
-	}
+	},
+	...postActions
 };

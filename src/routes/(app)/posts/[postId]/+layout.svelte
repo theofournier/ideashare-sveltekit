@@ -26,32 +26,17 @@
 				<p>{label.labels?.name}</p>
 			{/each}
 		{/if}
-		<form
-			method="POST"
-			action={isLike
-				? `/posts/${$page.params.postId}?/unlike`
-				: `/posts/${$page.params.postId}?/like`}
-		>
+		<form method="POST" action={isLike ? '?/unlike' : '?/like'}>
 			<button class={`btn ${isLike ? 'btn-primary' : ''}`}
 				>{isLike ? 'Unlike' : 'Like'} {post.posts_likes?.length ?? 0}</button
 			>
 		</form>
-		<form
-			method="POST"
-			action={isFollow
-				? `/posts/${$page.params.postId}?/unfollow`
-				: `/posts/${$page.params.postId}?/follow`}
-		>
+		<form method="POST" action={isFollow ? '?/unfollow' : '?/follow'}>
 			<button class={`btn ${isFollow ? 'btn-primary' : ''}`}
 				>{isFollow ? 'Unfollow' : 'Follow'} {post.posts_followers?.length ?? 0}</button
 			>
 		</form>
-		<form
-			method="POST"
-			action={isWork
-				? `/posts/${$page.params.postId}?/unwork`
-				: `/posts/${$page.params.postId}?/work`}
-		>
+		<form method="POST" action={isWork ? '?/unwork' : '?/work'}>
 			<button class={`btn ${isWork ? 'btn-primary' : ''}`}
 				>{isWork ? 'Unwork' : 'Work'} {post.posts_works?.length ?? 0}</button
 			>

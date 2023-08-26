@@ -1,5 +1,6 @@
-import type { PageServerLoad } from './$types';
+import { postActions } from '$lib/server/postActions';
+import type { Actions } from './$types';
 
-export const load = (async () => {
-    return {};
-}) satisfies PageServerLoad;
+export const actions: Actions = {
+	...postActions
+};
