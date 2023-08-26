@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ProfileItem from '$lib/components/ProfileItem.svelte';
+
 	export let data;
 </script>
 
@@ -8,12 +10,7 @@
 		<p>No profiles</p>
 	{:else}
 		{#each data.profiles as profile (profile.id)}
-			<div class="card shadow-lg">
-				<div class="card-body">
-					<h2 class="card-title">{profile.first_name} {profile.last_name}</h2>
-					<a href={`/profiles/${profile.id}`} class="btn">See profile</a>
-				</div>
-			</div>
+			<ProfileItem {profile} />
 		{/each}
 	{/if}
 </div>
