@@ -13,7 +13,6 @@
 					<h2 class="card-title">{post.title}</h2>
 					<p>{post.type}</p>
 					<p>{post.id}</p>
-					<p>{post.created_at}</p>
 					<p>{post.language}</p>
 					<p>{post.short_desc}</p>
 					<p>{post.long_desc}</p>
@@ -33,6 +32,8 @@
 							<p>{note.text}</p>
 						{/each}
 					{/if}
+					<p>{post.profiles?.first_name} {post.profiles?.last_name}</p>
+					<p>{post.created_at}</p>
 					<a href={`/posts/${post.id}`} class="btn">See post</a>
 				</div>
 			</div>

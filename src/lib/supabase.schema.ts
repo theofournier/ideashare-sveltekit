@@ -187,6 +187,52 @@ export interface Database {
           }
         ]
       }
+      posts_helps: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          images: Json[] | null
+          post_id: string
+          title: string | null
+          url_links: string[] | null
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: Json[] | null
+          post_id: string
+          title?: string | null
+          url_links?: string[] | null
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          images?: Json[] | null
+          post_id?: string
+          title?: string | null
+          url_links?: string[] | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "posts_helps_post_id_fkey"
+            columns: ["post_id"]
+            referencedRelation: "posts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "posts_helps_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
       posts_labels: {
         Row: {
           label_id: string
