@@ -1,16 +1,14 @@
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals: { supabase, getSession } }) => {
 	const session = await getSession();
 	if (!session) {
-		return fail(401, {
-			error: 'You must be logged in'
-		});
+		throw error(403, 'You must be logged in');
 	}
-	const { data, error } = await supabase.from('labels').select('*');
+	const { data, error: labelsError } = await supabase.from('labels').select('*');
 
-	console.log('LABELS', error);
+	console.log('LABELS', labelsError);
 	return { labels: data };
 };
 

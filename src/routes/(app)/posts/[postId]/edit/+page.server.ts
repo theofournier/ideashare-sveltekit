@@ -1,16 +1,11 @@
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals: { supabase, getSession }, params }) => {
 	const session = await getSession();
 	if (!session) {
-		return fail(401, {
-			error: 'You must be logged in'
-		});
+		throw error(401, 'You must be logged in');
 	}
-	const { data: labels, error: errorLabels } = await supabase.from('labels').select('*');
-	console.log('LABELS', errorLabels);
-
 	const { data: post, error: errorPost } = await supabase
 		.from('posts')
 		.select('*, posts_labels(*)')
@@ -18,10 +13,11 @@ export const load: PageServerLoad = async ({ locals: { supabase, getSession }, p
 		.single();
 	console.log('POST', errorPost);
 	if (post?.user_id !== session.user.id) {
-		return fail(401, {
-			error: 'Only owner can edit'
-		});
+		throw error(403, 'You must be the owner to edit');
 	}
+
+	const { data: labels, error: errorLabels } = await supabase.from('labels').select('*');
+	console.log('LABELS', errorLabels);
 
 	return { labels, post };
 };
@@ -41,7 +37,7 @@ export const actions: Actions = {
 			.single();
 		console.log('POST', errorPost);
 		if (post?.user_id !== session.user.id) {
-			return fail(401, {
+			return fail(403, {
 				error: 'Only owner can edit'
 			});
 		}
