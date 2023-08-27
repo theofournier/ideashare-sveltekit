@@ -31,6 +31,12 @@
 					`/profiles/${$page.params.profileId}/posts-following`}>Posts following</a
 			>
 			<a
+				href={`/profiles/${$page.params.profileId}/posts-working`}
+				class="tab"
+				class:tab-active={$page.url.pathname ===
+					`/profiles/${$page.params.profileId}/posts-working`}>Posts working</a
+			>
+			<a
 				href={`/profiles/${$page.params.profileId}/helps`}
 				class="tab"
 				class:tab-active={$page.url.pathname === `/profiles/${$page.params.profileId}/helps`}
