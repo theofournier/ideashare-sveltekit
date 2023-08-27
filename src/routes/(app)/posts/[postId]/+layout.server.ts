@@ -1,7 +1,8 @@
+import { error } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
 export const load = (async ({ locals: { supabase }, params }) => {
-	const { data, error } = await supabase
+	const { data, error: errorPost } = await supabase
 		.from('posts')
 		.select(
 			`
@@ -20,9 +21,9 @@ export const load = (async ({ locals: { supabase }, params }) => {
 		)
 		.eq('id', params.postId)
 		.single();
-	console.log('POST', params.postId, error);
-	if (data) {
-		return { post: data };
+	console.log('POST', params.postId, errorPost);
+	if (!data) {
+		throw error(404, "Post not found")
 	}
-	return { post: null };
+	return { post: data };
 }) satisfies LayoutServerLoad;
