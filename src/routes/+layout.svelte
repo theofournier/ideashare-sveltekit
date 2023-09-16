@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>User Management</title>
+	<title>Idea Share</title>
 </svelte:head>
 
 <div class="min-h-full">
