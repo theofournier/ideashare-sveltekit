@@ -334,13 +334,13 @@
 				<p>Status</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">Work</span>
 						<input
 							type="radio"
 							name="status"
 							class="radio"
-							checked={data.post?.status === 'everyone'}
-							value="everyone"
+							checked={data.post?.status === 'work'}
+							value="work"
 						/>
 					</label>
 				</div>

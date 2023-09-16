@@ -123,5 +123,34 @@ export const postActions: Actions = {
 			.eq('post_id', params.postId);
 
 		console.log('UNWORK', error);
+	},
+	'change-status': async ({ locals: { supabase, getSession }, params, request }) => {
+		if (!params.postId) {
+			return fail(404, {
+				error: 'PostId is required'
+			});
+		}
+		const session = await getSession();
+		if (!session) {
+			return fail(401, {
+				error: 'You must be logged in'
+			});
+		}
+
+		const formData = await request.formData();
+		const status = formData.get('status')?.toString()
+		if (!status) {
+			return fail(404, {
+				error: 'Status required'
+			});
+		}
+
+		const { error } = await supabase.from('posts_status').insert({
+			post_id: params.postId,
+			user_id: session.user.id,
+			status: status
+		});
+
+		console.log('CHANGE_STATUS', error);
 	}
 };

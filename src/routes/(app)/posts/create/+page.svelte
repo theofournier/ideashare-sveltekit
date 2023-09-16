@@ -218,8 +218,8 @@
 				<p>Status</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="status" class="radio" checked value="everyone" />
+						<span class="label-text">Work</span>
+						<input type="radio" name="status" class="radio" checked value="work" />
 					</label>
 				</div>
 				<div class="form-control">

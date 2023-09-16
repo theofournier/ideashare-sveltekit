@@ -8,6 +8,8 @@
 		(follower) => follower.user_id === data.session?.user.id
 	);
 	$: isWork = post?.posts_works.some((work) => work.user_id === data.session?.user.id);
+	$: status = post?.posts_status.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
+	$: lastStatus = status.at(0)?.status;
 </script>
 
 <div>
@@ -22,6 +24,24 @@
 			<p>{label.labels?.name}</p>
 		{/each}
 	{/if}
+	{#if status}
+		{#each status as s}
+			<p>{s.status} {s.created_at}</p>
+		{/each}
+	{/if}
+	<form method="POST" action="?/change-status">
+		<select
+			class="select select-bordered"
+			name="status"
+			value={lastStatus}
+		>
+			<option>open</option>
+			<option>ongoing</option>
+			<option>complete</option>
+			<option>close</option>
+		</select>
+		<button class="btn">Save</button>
+	</form>
 	<p>{post.profiles?.first_name} {post.profiles?.last_name}</p>
 	<p>{post.created_at}</p>
 	<p>Views: {post.posts_views?.length ?? 0}</p>

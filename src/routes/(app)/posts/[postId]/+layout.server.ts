@@ -13,6 +13,7 @@ export const load = (async ({ locals: { supabase, getSession }, params }) => {
                 *
             )
         ),
+		posts_status(*),
 		posts_likes(*),
 		posts_works(*),
 		posts_followers(*),
