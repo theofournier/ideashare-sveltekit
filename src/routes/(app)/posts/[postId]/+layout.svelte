@@ -24,6 +24,7 @@
 	{/if}
 	<p>{post.profiles?.first_name} {post.profiles?.last_name}</p>
 	<p>{post.created_at}</p>
+	<p>Views: {post.posts_views?.length ?? 0}</p>
 	<form method="POST" action={isLike ? '?/unlike' : '?/like'}>
 		<button class={`btn ${isLike ? 'btn-primary' : ''}`}
 			>{isLike ? 'Unlike' : 'Like'} {post.posts_likes?.length ?? 0}</button
