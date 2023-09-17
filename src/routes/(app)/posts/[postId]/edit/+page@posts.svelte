@@ -85,13 +85,13 @@
 				<p>Like</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="like"
 							class="radio"
-							checked={data.post?.like === 'everyone'}
-							value="everyone"
+							checked={data.post?.like === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>
@@ -112,13 +112,13 @@
 				<p>Comment</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="comment"
 							class="radio"
-							checked={data.post?.comment === 'everyone'}
-							value="everyone"
+							checked={data.post?.comment === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>
@@ -151,13 +151,13 @@
 				<p>Help</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="help"
 							class="radio"
-							checked={data.post?.help === 'everyone'}
-							value="everyone"
+							checked={data.post?.help === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>
@@ -190,13 +190,13 @@
 				<p>Link post</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="linkPost"
 							class="radio"
-							checked={data.post?.link_post === 'everyone'}
-							value="everyone"
+							checked={data.post?.link_post === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>
@@ -229,13 +229,13 @@
 				<p>Work on it</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="work"
 							class="radio"
-							checked={data.post?.work === 'everyone'}
-							value="everyone"
+							checked={data.post?.work === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>
@@ -268,13 +268,13 @@
 				<p>Contact</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="contact"
 							class="radio"
-							checked={data.post?.contact === 'everyone'}
-							value="everyone"
+							checked={data.post?.contact === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>
@@ -307,13 +307,13 @@
 				<p>Follow</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
+						<span class="label-text">All</span>
 						<input
 							type="radio"
 							name="follow"
 							class="radio"
-							checked={data.post?.follow === 'everyone'}
-							value="everyone"
+							checked={data.post?.follow === 'all'}
+							value="all"
 						/>
 					</label>
 				</div>

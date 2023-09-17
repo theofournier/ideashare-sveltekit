@@ -83,8 +83,8 @@
 				<p>Like</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="like" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="like" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
@@ -98,13 +98,13 @@
 				<p>Comment</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="comment" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="comment" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">None</span>
+						<span class="label-text">Work</span>
 						<input type="radio" name="comment" class="radio" value="work" />
 					</label>
 				</div>
@@ -119,8 +119,8 @@
 				<p>Help</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="help" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="help" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
@@ -140,8 +140,8 @@
 				<p>Link post</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="linkPost" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="linkPost" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
@@ -161,8 +161,8 @@
 				<p>Work on it</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="work" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="work" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
@@ -182,8 +182,8 @@
 				<p>Contact</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="contact" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="contact" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
@@ -203,8 +203,8 @@
 				<p>Follow</p>
 				<div class="form-control">
 					<label class="label cursor-pointer">
-						<span class="label-text">Everyone</span>
-						<input type="radio" name="follow" class="radio" checked value="everyone" />
+						<span class="label-text">All</span>
+						<input type="radio" name="follow" class="radio" checked value="all" />
 					</label>
 				</div>
 				<div class="form-control">
