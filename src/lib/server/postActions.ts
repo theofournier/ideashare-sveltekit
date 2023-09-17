@@ -1,3 +1,4 @@
+import type { PostStatus } from '$lib/data/post';
 import { fail, type Actions } from '@sveltejs/kit';
 
 export const postActions: Actions = {
@@ -148,7 +149,7 @@ export const postActions: Actions = {
 		const { error } = await supabase.from('posts_status').insert({
 			post_id: params.postId,
 			user_id: session.user.id,
-			status: status
+			status: status as PostStatus
 		});
 
 		console.log('CHANGE_STATUS', error);

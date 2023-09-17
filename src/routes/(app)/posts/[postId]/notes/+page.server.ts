@@ -2,11 +2,14 @@ import { fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { postActions } from '$lib/server/postActions';
 
-export const load: PageServerLoad = async ({ locals: { supabase }, params }) => {
+export const load: PageServerLoad = async ({ locals: { supabase, getSession }, params }) => {
+	const session = await getSession();
+
 	const { data, error } = await supabase
 		.from('posts_notes')
 		.select('*')
 		.eq('post_id', params.postId)
+		.eq('user_id', session?.user.id)
 		.order('created_at', { ascending: false });
 
 	console.log('POST NOTES', error);

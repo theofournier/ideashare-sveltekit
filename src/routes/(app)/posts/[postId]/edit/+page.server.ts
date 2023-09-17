@@ -1,5 +1,6 @@
 import { error, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
+import type { ShareType } from '$lib/data/post';
 
 export const load: PageServerLoad = async ({ locals: { supabase, getSession }, params }) => {
 	const session = await getSession();
@@ -53,14 +54,14 @@ export const actions: Actions = {
 				title: formData.get('title')?.toString(),
 				privacy: formData.get('private')?.toString() === 'on' ? 'private' : 'public',
 				anonymous: formData.get('anonymous')?.toString() === 'on',
-				like: formData.get('like')?.toString(),
-				comment: formData.get('comment')?.toString(),
-				help: formData.get('help')?.toString(),
-				link_post: formData.get('linkPost')?.toString(),
-				work: formData.get('work')?.toString(),
-				contact: formData.get('contact')?.toString(),
-				follow: formData.get('follow')?.toString(),
-				status: formData.get('status')?.toString()
+				like: formData.get('like')?.toString() as ShareType,
+				comment: formData.get('comment')?.toString() as ShareType,
+				help: formData.get('help')?.toString() as ShareType,
+				link_post: formData.get('linkPost')?.toString() as ShareType,
+				work: formData.get('work')?.toString() as ShareType,
+				contact: formData.get('contact')?.toString() as ShareType,
+				follow: formData.get('follow')?.toString() as ShareType,
+				status: formData.get('status')?.toString() as  ShareType
 			})
 			.eq('id', params.postId)
 			.select();

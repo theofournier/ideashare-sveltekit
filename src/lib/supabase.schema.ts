@@ -43,72 +43,72 @@ export interface Database {
       posts: {
         Row: {
           anonymous: boolean | null
-          comment: string | null
-          contact: string | null
+          comment: Database["public"]["Enums"]["share_type"] | null
+          contact: Database["public"]["Enums"]["share_type"] | null
           created_at: string
-          follow: string | null
-          help: string | null
+          follow: Database["public"]["Enums"]["share_type"] | null
+          help: Database["public"]["Enums"]["share_type"] | null
           id: string
           images: Json[] | null
           language: string | null
-          like: string | null
-          link_post: string | null
+          like: Database["public"]["Enums"]["share_type"] | null
+          link_post: Database["public"]["Enums"]["share_type"] | null
           long_desc: string | null
-          privacy: string | null
+          privacy: Database["public"]["Enums"]["privacy"] | null
           short_desc: string | null
-          status: string | null
+          status: Database["public"]["Enums"]["share_type"] | null
           title: string | null
-          type: string
+          type: Database["public"]["Enums"]["post_type"]
           updated_at: string | null
           url_links: string[] | null
           user_id: string | null
-          work: string | null
+          work: Database["public"]["Enums"]["share_type"] | null
         }
         Insert: {
           anonymous?: boolean | null
-          comment?: string | null
-          contact?: string | null
+          comment?: Database["public"]["Enums"]["share_type"] | null
+          contact?: Database["public"]["Enums"]["share_type"] | null
           created_at?: string
-          follow?: string | null
-          help?: string | null
+          follow?: Database["public"]["Enums"]["share_type"] | null
+          help?: Database["public"]["Enums"]["share_type"] | null
           id?: string
           images?: Json[] | null
           language?: string | null
-          like?: string | null
-          link_post?: string | null
+          like?: Database["public"]["Enums"]["share_type"] | null
+          link_post?: Database["public"]["Enums"]["share_type"] | null
           long_desc?: string | null
-          privacy?: string | null
+          privacy?: Database["public"]["Enums"]["privacy"] | null
           short_desc?: string | null
-          status?: string | null
+          status?: Database["public"]["Enums"]["share_type"] | null
           title?: string | null
-          type: string
+          type: Database["public"]["Enums"]["post_type"]
           updated_at?: string | null
           url_links?: string[] | null
           user_id?: string | null
-          work?: string | null
+          work?: Database["public"]["Enums"]["share_type"] | null
         }
         Update: {
           anonymous?: boolean | null
-          comment?: string | null
-          contact?: string | null
+          comment?: Database["public"]["Enums"]["share_type"] | null
+          contact?: Database["public"]["Enums"]["share_type"] | null
           created_at?: string
-          follow?: string | null
-          help?: string | null
+          follow?: Database["public"]["Enums"]["share_type"] | null
+          help?: Database["public"]["Enums"]["share_type"] | null
           id?: string
           images?: Json[] | null
           language?: string | null
-          like?: string | null
-          link_post?: string | null
+          like?: Database["public"]["Enums"]["share_type"] | null
+          link_post?: Database["public"]["Enums"]["share_type"] | null
           long_desc?: string | null
-          privacy?: string | null
+          privacy?: Database["public"]["Enums"]["privacy"] | null
           short_desc?: string | null
-          status?: string | null
+          status?: Database["public"]["Enums"]["share_type"] | null
           title?: string | null
-          type?: string
+          type?: Database["public"]["Enums"]["post_type"]
           updated_at?: string | null
           url_links?: string[] | null
           user_id?: string | null
-          work?: string | null
+          work?: Database["public"]["Enums"]["share_type"] | null
         }
         Relationships: [
           {
@@ -386,21 +386,21 @@ export interface Database {
           created_at: string
           id: string
           post_id: string
-          status: string
+          status: Database["public"]["Enums"]["post_status"]
           user_id: string | null
         }
         Insert: {
           created_at?: string
           id?: string
           post_id: string
-          status: string
+          status: Database["public"]["Enums"]["post_status"]
           user_id?: string | null
         }
         Update: {
           created_at?: string
           id?: string
           post_id?: string
-          status?: string
+          status?: Database["public"]["Enums"]["post_status"]
           user_id?: string | null
         }
         Relationships: [
@@ -547,22 +547,13 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      delete_avatar: {
-        Args: {
-          avatar_url: string
-        }
-        Returns: Record<string, unknown>
-      }
-      delete_storage_object: {
-        Args: {
-          bucket: string
-          object: string
-        }
-        Returns: Record<string, unknown>
-      }
+      [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      post_status: "open" | "ongoing" | "complete" | "cancel" | "close"
+      post_type: "issue" | "idea"
+      privacy: "public" | "private"
+      share_type: "all" | "work" | "approval" | "none"
     }
     CompositeTypes: {
       [_ in never]: never
