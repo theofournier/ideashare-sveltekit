@@ -5,7 +5,11 @@ export type Label = Database['public']['Tables']['labels']['Row'];
 export type PostLabel = Database['public']['Tables']['posts_labels']['Row'];
 export type PostNote = Database['public']['Tables']['posts_notes']['Row'];
 export type Help = Database['public']['Tables']['posts_helps']['Row'];
-export type PostType = Database['public']['Enums']['post_type']
-export type PrivacyType = Database['public']['Enums']['privacy']
-export type ShareType = Database['public']['Enums']['share_type']
-export type PostStatus = Database['public']['Enums']['post_status']
+export type PostApproval = Database['public']['Tables']['posts_approvals']['Row'];
+
+export type PostType = Database['public']['Enums']['post_type'];
+export type PrivacyType = Database['public']['Enums']['privacy'];
+export type ShareType = Database['public']['Enums']['share_type'];
+export type PostStatus = Database['public']['Enums']['post_status'];
+export type ApprovalStatus = Database['public']['Enums']['approval_status'];
+export type ApprovalType = Database['public']['Enums']['approval_type'];

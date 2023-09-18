@@ -1,7 +1,12 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
-	export let data: PageData;
+	import ApprovalItem from '$lib/components/ApprovalItem.svelte';
+	export let data;
 </script>
 
-<p>Approvals</p>
+{#if !data.postApprovals || data.postApprovals.length === 0}
+	<p>No Post Approvals</p>
+{:else}
+	{#each data.postApprovals as approval (approval.id)}
+		<ApprovalItem {approval} />
+	{/each}
+{/if}

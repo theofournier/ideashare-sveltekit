@@ -121,36 +121,57 @@ export interface Database {
       }
       posts_approvals: {
         Row: {
+          approver_id: string
           created_at: string
+          follow_id: string | null
           help_id: string | null
           id: string
           post_id: string
-          status: string
-          type: string
+          status: Database["public"]["Enums"]["approval_status"]
+          type: Database["public"]["Enums"]["approval_type"]
           updated_at: string
           user_id: string
+          work_id: string | null
         }
         Insert: {
+          approver_id: string
           created_at?: string
+          follow_id?: string | null
           help_id?: string | null
           id?: string
           post_id: string
-          status?: string
-          type: string
+          status?: Database["public"]["Enums"]["approval_status"]
+          type: Database["public"]["Enums"]["approval_type"]
           updated_at?: string
           user_id: string
+          work_id?: string | null
         }
         Update: {
+          approver_id?: string
           created_at?: string
+          follow_id?: string | null
           help_id?: string | null
           id?: string
           post_id?: string
-          status?: string
-          type?: string
+          status?: Database["public"]["Enums"]["approval_status"]
+          type?: Database["public"]["Enums"]["approval_type"]
           updated_at?: string
           user_id?: string
+          work_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "posts_approvals_approver_id_fkey"
+            columns: ["approver_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "posts_approvals_follow_id_fkey"
+            columns: ["follow_id"]
+            referencedRelation: "posts_followers"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "posts_approvals_help_id_fkey"
             columns: ["help_id"]
@@ -167,6 +188,12 @@ export interface Database {
             foreignKeyName: "posts_approvals_user_id_fkey"
             columns: ["user_id"]
             referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "posts_approvals_work_id_fkey"
+            columns: ["work_id"]
+            referencedRelation: "posts_works"
             referencedColumns: ["id"]
           }
         ]
@@ -211,16 +238,19 @@ export interface Database {
       posts_followers: {
         Row: {
           created_at: string
+          id: string
           post_id: string
           user_id: string
         }
         Insert: {
           created_at?: string
+          id?: string
           post_id: string
           user_id: string
         }
         Update: {
           created_at?: string
+          id?: string
           post_id?: string
           user_id?: string
         }
@@ -316,16 +346,19 @@ export interface Database {
       posts_likes: {
         Row: {
           created_at: string
+          id: string
           post_id: string
           user_id: string
         }
         Insert: {
           created_at?: string
+          id?: string
           post_id: string
           user_id: string
         }
         Update: {
           created_at?: string
+          id?: string
           post_id?: string
           user_id?: string
         }
@@ -421,16 +454,19 @@ export interface Database {
       posts_views: {
         Row: {
           created_at: string
+          id: string
           post_id: string
           user_id: string
         }
         Insert: {
           created_at?: string
+          id?: string
           post_id: string
           user_id: string
         }
         Update: {
           created_at?: string
+          id?: string
           post_id?: string
           user_id?: string
         }
@@ -452,16 +488,19 @@ export interface Database {
       posts_works: {
         Row: {
           created_at: string
+          id: string
           post_id: string
           user_id: string
         }
         Insert: {
           created_at?: string
+          id?: string
           post_id: string
           user_id: string
         }
         Update: {
           created_at?: string
+          id?: string
           post_id?: string
           user_id?: string
         }
@@ -516,16 +555,19 @@ export interface Database {
           created_at: string
           follower_user_id: string
           following_user_id: string
+          id: string
         }
         Insert: {
           created_at?: string
           follower_user_id: string
           following_user_id: string
+          id?: string
         }
         Update: {
           created_at?: string
           follower_user_id?: string
           following_user_id?: string
+          id?: string
         }
         Relationships: [
           {
@@ -550,6 +592,8 @@ export interface Database {
       [_ in never]: never
     }
     Enums: {
+      approval_status: "approved" | "refused" | "pending"
+      approval_type: "help" | "follow" | "work"
       post_status: "open" | "ongoing" | "complete" | "cancel" | "close"
       post_type: "issue" | "idea"
       privacy: "public" | "private"

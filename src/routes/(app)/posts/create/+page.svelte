@@ -209,6 +209,12 @@
 				</div>
 				<div class="form-control">
 					<label class="label cursor-pointer">
+						<span class="label-text">Approval</span>
+						<input type="radio" name="follow" class="radio" value="approval" />
+					</label>
+				</div>
+				<div class="form-control">
+					<label class="label cursor-pointer">
 						<span class="label-text">None</span>
 						<input type="radio" name="follow" class="radio" value="none" />
 					</label>
