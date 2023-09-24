@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import Avatar from '$lib/components/Avatar.svelte';
 	export let data;
 
 	$: profile = data.profile;
@@ -9,7 +10,9 @@
 </script>
 
 <div>
+	<Avatar avatarName={profile.avatar_name} />
 	<h2>{profile.first_name} {profile.last_name}</h2>
+	<p>{profile.id}</p>
 	<form method="POST" action={isFollow ? '?/unfollow' : '?/follow'}>
 		<button class={`btn ${isFollow ? 'btn-primary' : ''}`}
 			>{isFollow ? 'Unfollow' : 'Follow'} {profile.profiles_follows?.length ?? 0}</button

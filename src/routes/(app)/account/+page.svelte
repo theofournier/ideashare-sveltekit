@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Avatar from '$lib/components/Avatar.svelte';
 	import { getAvatarUrl } from '$lib/utils/getAvatarUrl.js';
 
 	export let data;
@@ -9,7 +10,7 @@
 
 	let firstName: string = user?.first_name ?? '';
 	let lastName: string = user?.last_name ?? '';
-	let avatarUrl = user?.avatar_name ? getAvatarUrl(user.avatar_name) : '';
+	let avatarUrl = getAvatarUrl(user?.avatar_name);
 	let files: FileList;
 
 	const onChangeAvatar = () => {
@@ -51,15 +52,7 @@
 		<button class="btn">Update my profile</button>
 	</form>
 	<form action="?/avatar" method="POST" enctype="multipart/form-data">
-		{#if avatarUrl}
-			<div class="avatar">
-				<div class="rounded-full w-20">
-					<img src={avatarUrl} alt={avatarUrl} />
-				</div>
-			</div>
-		{:else}
-			<div class="rounded-full w-20 h-20 bg-black" />
-		{/if}
+		<Avatar {avatarUrl} />
 		<input
 			class="file-input file-input-bordered"
 			type="file"

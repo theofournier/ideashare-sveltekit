@@ -1,4 +1,5 @@
 <script>
+	import Avatar from '$lib/components/Avatar.svelte';
 	import '../app.css';
 
 	export let data;
@@ -19,10 +20,10 @@
 		<div class="flex-none">
 			<p>{data.user?.first_name} {data.user?.last_name}</p>
 			<div class="dropdown dropdown-end">
-				<label tabindex="0" class="btn btn-circle avatar">
-					<div class="w-10 rounded-full" />
+				<label tabindex="0">
+					<Avatar avatarName={data.user?.avatar_name} />
 				</label>
-				<ul tabindex="0" class="bg-base-100 z-[1] menu menu-sm dropdown-content">
+				<ul tabindex="0" class="bg-base-100 z-[1] menu menu-sm dropdown-content shadow-lg">
 					<li>
 						<a href="/login">Login</a>
 					</li>
