@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getAvatarUrl } from '$lib/utils/getAvatarUrl';
+	import { getAvatarUrl } from '$lib/utils/storageUrl';
 
 	export let avatarUrl: string | undefined = undefined;
 	export let avatarName: string | undefined | null = undefined;

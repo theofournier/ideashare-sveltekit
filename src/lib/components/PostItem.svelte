@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Label, Post } from '$lib/data/post';
 	import type { Profile } from '$lib/data/users';
+	import Link from './Link.svelte';
+	import PostImage from './PostImage.svelte';
 
 	export let post: Post;
 	export let labels: (Label | null)[] | null;
@@ -18,12 +20,17 @@
 		<p>{post.privacy}</p>
 		{#if post.url_links}
 			{#each post.url_links as link}
-				<p>{link}</p>
+				<Link {link} />
 			{/each}
 		{/if}
 		{#if labels}
 			{#each labels as label}
 				<p>{label?.name}</p>
+			{/each}
+		{/if}
+		{#if post.images}
+			{#each post.images as image}
+				<PostImage postImageName={image} />
 			{/each}
 		{/if}
 		<p>{profile?.first_name} {profile?.last_name}</p>

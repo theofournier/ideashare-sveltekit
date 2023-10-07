@@ -1,10 +1,23 @@
 <script lang="ts">
+	import PostImage from '$lib/components/PostImage.svelte';
+
 	export let data;
+
+	let postImages: string[] = [];
+	let linksCount = 0;
+	let files: FileList;
+
+	const onChangePostImages = () => {
+		if (!files || files.length === 0) {
+			throw new Error('You must select an image to upload.');
+		}
+		postImages = Array.from(files).map((file) => URL.createObjectURL(file));
+	};
 </script>
 
 <div>
 	Welcome
-	<form method="POST">
+	<form method="POST" enctype="multipart/form-data">
 		<div id="category" class="bg-base-200 my-4">
 			<div class="text-xl">Choose a post category</div>
 			<div>
@@ -64,6 +77,23 @@
 				<option>French</option>
 			</select>
 			<textarea class="textarea textarea-bordered" placeholder="Note" name="note" />
+			<input
+				class="file-input file-input-bordered"
+				type="file"
+				accept=".png,.jpg"
+				name="postImages"
+				placeholder="Images"
+				multiple
+				bind:files
+				on:change={onChangePostImages}
+			/>
+			{#each postImages as postImage}
+				<PostImage postImageUrl={postImage} />
+			{/each}
+			<button type="button" class="btn" on:click={() => linksCount++}>Add link</button>
+			{#each Array(linksCount) as _, index (index)}
+				<input type="url" placeholder={`Link ${index}`} class="input input-bordered" name="link" />
+			{/each}
 		</div>
 		<div id="share-options" class="bg-base-200 my-4">
 			<div class="text-xl">Share options</div>
@@ -236,6 +266,6 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn">Save</button>
+		<button type="submit" class="btn">Save</button>
 	</form>
 </div>

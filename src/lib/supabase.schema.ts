@@ -49,7 +49,7 @@ export interface Database {
           follow: Database["public"]["Enums"]["share_type"] | null
           help: Database["public"]["Enums"]["share_type"] | null
           id: string
-          images: Json[] | null
+          images: string[] | null
           language: string | null
           like: Database["public"]["Enums"]["share_type"] | null
           link_post: Database["public"]["Enums"]["share_type"] | null
@@ -72,7 +72,7 @@ export interface Database {
           follow?: Database["public"]["Enums"]["share_type"] | null
           help?: Database["public"]["Enums"]["share_type"] | null
           id?: string
-          images?: Json[] | null
+          images?: string[] | null
           language?: string | null
           like?: Database["public"]["Enums"]["share_type"] | null
           link_post?: Database["public"]["Enums"]["share_type"] | null
@@ -95,7 +95,7 @@ export interface Database {
           follow?: Database["public"]["Enums"]["share_type"] | null
           help?: Database["public"]["Enums"]["share_type"] | null
           id?: string
-          images?: Json[] | null
+          images?: string[] | null
           language?: string | null
           like?: Database["public"]["Enums"]["share_type"] | null
           link_post?: Database["public"]["Enums"]["share_type"] | null
@@ -274,7 +274,7 @@ export interface Database {
           created_at: string
           description: string | null
           id: string
-          images: Json[] | null
+          images: string[] | null
           post_id: string
           title: string | null
           url_links: string[] | null
@@ -284,7 +284,7 @@ export interface Database {
           created_at?: string
           description?: string | null
           id?: string
-          images?: Json[] | null
+          images?: string[] | null
           post_id: string
           title?: string | null
           url_links?: string[] | null
@@ -294,7 +294,7 @@ export interface Database {
           created_at?: string
           description?: string | null
           id?: string
-          images?: Json[] | null
+          images?: string[] | null
           post_id?: string
           title?: string | null
           url_links?: string[] | null

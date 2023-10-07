@@ -20,7 +20,7 @@
 		<div class="flex-none">
 			<p>{data.user?.first_name} {data.user?.last_name}</p>
 			<div class="dropdown dropdown-end">
-				<label tabindex="0">
+				<label tabindex="0" class="btn btn-circle avatar">
 					<Avatar avatarName={data.user?.avatar_name} />
 				</label>
 				<ul tabindex="0" class="bg-base-100 z-[1] menu menu-sm dropdown-content shadow-lg">

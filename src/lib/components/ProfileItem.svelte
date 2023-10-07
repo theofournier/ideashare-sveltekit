@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { Profile } from '$lib/data/users';
-	import { getAvatarUrl } from '$lib/utils/getAvatarUrl';
 	import Avatar from './Avatar.svelte';
 
 	export let profile: Profile;

@@ -29,6 +29,21 @@ export const actions: Actions = {
 			});
 		}
 
+		const postImages = formData.getAll('postImages') as Blob[];
+		const postImagesName: string[] = [];
+		if (postImages.length > 0) {
+			for (const image of postImages) {
+				const { data: imageName, error: errorUpload } = await supabase.storage
+					.from('post-images')
+					.upload(`${crypto.randomUUID()}.${image.type.split('/')[1]}`, image);
+				if (imageName) {
+					postImagesName.push(imageName.path);
+				} else {
+					console.log('ERROR UPLOAD IMAGE', errorUpload);
+				}
+			}
+		}
+
 		const { error: errorPost, data } = await supabase
 			.from('posts')
 			.insert({
@@ -38,6 +53,8 @@ export const actions: Actions = {
 				short_desc: formData.get('shortDescription')?.toString(),
 				title: formData.get('title')?.toString(),
 				user_id: session.user.id,
+				url_links: formData.getAll('link') as string[],
+				images: postImagesName,
 				privacy: formData.get('private')?.toString() === 'on' ? 'private' : 'public',
 				anonymous: formData.get('anonymous')?.toString() === 'on',
 				like: formData.get('like')?.toString() as ShareType,
@@ -47,7 +64,7 @@ export const actions: Actions = {
 				work: formData.get('work')?.toString() as ShareType,
 				contact: formData.get('contact')?.toString() as ShareType,
 				follow: formData.get('follow')?.toString() as ShareType,
-				status: formData.get('status')?.toString() as  ShareType
+				status: formData.get('status')?.toString() as ShareType
 			})
 			.select();
 

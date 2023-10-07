@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Avatar from '$lib/components/Avatar.svelte';
-	import { getAvatarUrl } from '$lib/utils/getAvatarUrl.js';
+	import { getAvatarUrl } from '$lib/utils/storageUrl.js';
 
 	export let data;
 	export let form;
