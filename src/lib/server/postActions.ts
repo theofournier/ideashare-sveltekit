@@ -1,5 +1,5 @@
 import type { PostStatus } from '$lib/data/post';
-import { fail, type Actions } from '@sveltejs/kit';
+import { fail, type Actions, redirect } from '@sveltejs/kit';
 
 export const postActions: Actions = {
 	like: async ({ locals: { supabase, getSession }, params }) => {
@@ -139,7 +139,7 @@ export const postActions: Actions = {
 		}
 
 		const formData = await request.formData();
-		const status = formData.get('status')?.toString()
+		const status = formData.get('status')?.toString();
 		if (!status) {
 			return fail(404, {
 				error: 'Status required'
@@ -153,5 +153,43 @@ export const postActions: Actions = {
 		});
 
 		console.log('CHANGE_STATUS', error);
+	},
+	delete: async ({ locals: { supabase, getSession }, params }) => {
+		if (!params.postId) {
+			return fail(404, {
+				error: 'PostId is required'
+			});
+		}
+		const session = await getSession();
+		if (!session) {
+			return fail(401, {
+				error: 'You must be logged in'
+			});
+		}
+		const { data: post, error: errorPost } = await supabase
+			.from('posts')
+			.select('*')
+			.eq('id', params.postId)
+			.single();
+		console.log('POST', errorPost);
+		if (!post) {
+			return fail(404, {
+				error: 'Post not found'
+			});
+		}
+
+		const { error: errorDelete } = await supabase.from('posts').delete().eq('id', params.postId);
+
+		console.log('DELETE', errorDelete);
+
+		const { data: postDeleted } = await supabase
+			.from('posts')
+			.select('*')
+			.eq('id', params.postId)
+			.single();
+
+		if (!errorDelete && !postDeleted) {
+			throw redirect(303, '/');
+		}
 	}
 };

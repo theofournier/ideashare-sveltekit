@@ -41,7 +41,9 @@ export const actions: Actions = {
 			.single();
 		console.log('POST', errorPost);
 		if (!post) {
-			throw error(404, 'Post not found');
+			return fail(404, {
+				error: 'Post not found'
+			});
 		}
 		if (post.user_id !== session.user.id) {
 			return fail(403, {

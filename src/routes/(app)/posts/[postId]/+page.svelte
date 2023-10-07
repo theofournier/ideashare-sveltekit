@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Link from '$lib/components/Link.svelte';
-	import PostImage from '$lib/components/PostImage.svelte';
+	import PostImage from '$lib/components/post/PostImage.svelte';
 
 	export let data;
 

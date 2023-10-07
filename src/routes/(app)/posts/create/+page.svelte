@@ -1,5 +1,4 @@
 <script lang="ts">
-	import PostImage from '$lib/components/post/PostImage.svelte';
 	import AdditionalInfoSection from '$lib/components/post/form/AdditionalInfoSection.svelte';
 	import InfoSection from '$lib/components/post/form/InfoSection.svelte';
 	import LabelsSection from '$lib/components/post/form/LabelsSection.svelte';

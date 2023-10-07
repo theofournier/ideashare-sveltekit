@@ -30,11 +30,7 @@
 		{/each}
 	{/if}
 	<form method="POST" action="?/change-status">
-		<select
-			class="select select-bordered"
-			name="status"
-			value={lastStatus}
-		>
+		<select class="select select-bordered" name="status" value={lastStatus}>
 			<option>open</option>
 			<option>ongoing</option>
 			<option>complete</option>
@@ -61,6 +57,9 @@
 		>
 	</form>
 	<a href={`/posts/${$page.params.postId}/edit`} class="btn">Edit</a>
+	<form method="POST" action={'?/delete'}>
+		<button class="btn btn-error">Delete</button>
+	</form>
 	<div class="tabs tabs-boxed">
 		<a
 			href={`/posts/${$page.params.postId}`}
