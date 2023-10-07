@@ -1,5 +1,5 @@
 <script lang="ts">
-	import PostItem from '$lib/components/PostItem.svelte';
+	import PostItem from '$lib/components/post/PostItem.svelte';
 
 	export let data;
 </script>

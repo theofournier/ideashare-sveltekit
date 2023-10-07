@@ -33,16 +33,20 @@ export const actions: Actions = {
 		const postImagesName: string[] = [];
 		if (postImages.length > 0) {
 			for (const image of postImages) {
-				const { data: imageName, error: errorUpload } = await supabase.storage
-					.from('post-images')
-					.upload(`${crypto.randomUUID()}.${image.type.split('/')[1]}`, image);
-				if (imageName) {
-					postImagesName.push(imageName.path);
-				} else {
-					console.log('ERROR UPLOAD IMAGE', errorUpload);
+				if (image.size && image.size > 0) {
+					const { data: imageName, error: errorUpload } = await supabase.storage
+						.from('post-images')
+						.upload(`${crypto.randomUUID()}.${image.type.split('/')[1]}`, image);
+					if (imageName) {
+						postImagesName.push(imageName.path);
+					} else {
+						console.log('ERROR UPLOAD IMAGE', errorUpload);
+					}
 				}
 			}
 		}
+
+		const urlLinks = formData.getAll('link') as string[];
 
 		const { error: errorPost, data } = await supabase
 			.from('posts')
@@ -53,8 +57,8 @@ export const actions: Actions = {
 				short_desc: formData.get('shortDescription')?.toString(),
 				title: formData.get('title')?.toString(),
 				user_id: session.user.id,
-				url_links: formData.getAll('link') as string[],
-				images: postImagesName,
+				url_links: urlLinks.length > 0 ? urlLinks : null,
+				images: postImagesName.length > 0 ? postImagesName : null,
 				privacy: formData.get('private')?.toString() === 'on' ? 'private' : 'public',
 				anonymous: formData.get('anonymous')?.toString() === 'on',
 				like: formData.get('like')?.toString() as ShareType,
@@ -72,13 +76,6 @@ export const actions: Actions = {
 
 		if (data && data.length > 0) {
 			const post = data[0];
-			const { error: errorNote } = await supabase.from('posts_notes').insert({
-				post_id: post.id,
-				user_id: session.user.id,
-				text: formData.get('note')?.toString()
-			});
-
-			console.log('CREATE NOTE', { errorNote });
 
 			const labels = formData.getAll('label') as string[];
 			if (labels) {

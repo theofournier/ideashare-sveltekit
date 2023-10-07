@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Label, Post } from '$lib/data/post';
 	import type { Profile } from '$lib/data/users';
-	import Link from './Link.svelte';
+	import Link from '../Link.svelte';
 	import PostImage from './PostImage.svelte';
 
 	export let post: Post;

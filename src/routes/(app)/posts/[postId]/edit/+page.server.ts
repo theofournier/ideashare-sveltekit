@@ -13,6 +13,9 @@ export const load: PageServerLoad = async ({ locals: { supabase, getSession }, p
 		.eq('id', params.postId)
 		.single();
 	console.log('POST', errorPost);
+	if (!post) {
+		throw error(404, 'Post not found');
+	}
 	if (post?.user_id !== session.user.id) {
 		throw error(403, 'You must be the owner to edit');
 	}
@@ -37,13 +40,35 @@ export const actions: Actions = {
 			.eq('id', params.postId)
 			.single();
 		console.log('POST', errorPost);
-		if (post?.user_id !== session.user.id) {
+		if (!post) {
+			throw error(404, 'Post not found');
+		}
+		if (post.user_id !== session.user.id) {
 			return fail(403, {
 				error: 'Only owner can edit'
 			});
 		}
 
 		const formData = await request.formData();
+
+		const postImages = formData.getAll('postImages') as Blob[];
+		const postImagesName: string[] = [];
+		if (postImages.length > 0) {
+			for (const image of postImages) {
+				if (image.size && image.size > 0) {
+					const { data: imageName, error: errorUpload } = await supabase.storage
+						.from('post-images')
+						.upload(`${crypto.randomUUID()}.${image.type.split('/')[1]}`, image);
+					if (imageName) {
+						postImagesName.push(imageName.path);
+					} else {
+						console.log('ERROR UPLOAD IMAGE', errorUpload);
+					}
+				}
+			}
+		}
+
+		const urlLinks = formData.getAll('link') as string[];
 
 		const { error: errorEdit, data } = await supabase
 			.from('posts')
@@ -52,6 +77,8 @@ export const actions: Actions = {
 				long_desc: formData.get('longDescription')?.toString(),
 				short_desc: formData.get('shortDescription')?.toString(),
 				title: formData.get('title')?.toString(),
+				url_links: urlLinks.length > 0 ? urlLinks : undefined,
+				images: postImagesName.length > 0 ? postImagesName : undefined,
 				privacy: formData.get('private')?.toString() === 'on' ? 'private' : 'public',
 				anonymous: formData.get('anonymous')?.toString() === 'on',
 				like: formData.get('like')?.toString() as ShareType,
@@ -61,7 +88,7 @@ export const actions: Actions = {
 				work: formData.get('work')?.toString() as ShareType,
 				contact: formData.get('contact')?.toString() as ShareType,
 				follow: formData.get('follow')?.toString() as ShareType,
-				status: formData.get('status')?.toString() as  ShareType
+				status: formData.get('status')?.toString() as ShareType
 			})
 			.eq('id', params.postId)
 			.select();
