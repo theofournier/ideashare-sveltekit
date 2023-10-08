@@ -6,7 +6,7 @@
 	export let postImages: string[] | null = null;
 
 	let selectedImages: string[] = [];
-	let linksCount = postLinks?.length || 0;
+	let selectedLinks: string[] = postLinks ? [...postLinks] : [];
 	let files: FileList;
 
 	const onChangePostImages = () => {
@@ -42,14 +42,33 @@
 			<PostImage postImageName={postImage} />
 		{/each}
 	{/if}
-	<button type="button" class="btn" on:click={() => linksCount++}>Add link</button>
-	{#each Array(linksCount) as _, index (index)}
-		<input
-			type="url"
-			placeholder={`Link ${index + 1}`}
-			class="input input-bordered"
-			name="link"
-			value={postLinks ? postLinks[index] || null : null}
-		/>
+	<button
+		type="button"
+		class="btn"
+		on:click={() => {
+			selectedLinks = [...selectedLinks, ''];
+		}}>Add link</button
+	>
+	{#each selectedLinks as link, index (index)}
+		<div>
+			<input
+				type="url"
+				placeholder={`Link ${index + 1}`}
+				class="input input-bordered"
+				name="link"
+				value={link !== '' ? link : null}
+				on:change={(e) => {
+					selectedLinks[index] = e.currentTarget.value;
+				}}
+			/>
+			<button
+				type="button"
+				class="btn btn-error"
+				on:click={() => {
+					selectedLinks.splice(index, 1);
+					selectedLinks = selectedLinks;
+				}}>Remove</button
+			>
+		</div>
 	{/each}
 </div>

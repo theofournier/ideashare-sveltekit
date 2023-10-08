@@ -9,7 +9,7 @@
 
 <div>
 	Welcome
-	<form method="POST">
+	<form method="POST" enctype="multipart/form-data">
 		<div id="category" class="bg-base-200 my-4">
 			<div class="card shadow-lg">
 				<div class="card-body">

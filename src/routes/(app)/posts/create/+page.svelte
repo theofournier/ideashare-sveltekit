@@ -5,17 +5,6 @@
 	import ShareOptionsSection from '$lib/components/post/form/ShareOptionsSection.svelte';
 
 	export let data;
-
-	let postImages: string[] = [];
-	let linksCount = 0;
-	let files: FileList;
-
-	const onChangePostImages = () => {
-		if (!files || files.length === 0) {
-			throw new Error('You must select an image to upload.');
-		}
-		postImages = Array.from(files).map((file) => URL.createObjectURL(file));
-	};
 </script>
 
 <div>
