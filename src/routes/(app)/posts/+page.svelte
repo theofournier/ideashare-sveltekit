@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Pagination from '$lib/components/Pagination.svelte';
 	import PostItem from '$lib/components/post/PostItem.svelte';
 
 	export let data;
@@ -16,5 +17,6 @@
 				profile={post.profiles}
 			/>
 		{/each}
+		<Pagination currentPage={data.currentPage} totalPage={data.totalPage} />
 	{/if}
 </div>

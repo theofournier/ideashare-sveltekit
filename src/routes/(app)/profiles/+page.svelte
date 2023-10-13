@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Pagination from '$lib/components/Pagination.svelte';
 	import ProfileItem from '$lib/components/ProfileItem.svelte';
 
 	export let data;
@@ -12,5 +13,6 @@
 		{#each data.profiles as profile (profile.id)}
 			<ProfileItem {profile} />
 		{/each}
+		<Pagination currentPage={data.currentPage} totalPage={data.totalPage} />
 	{/if}
 </div>
