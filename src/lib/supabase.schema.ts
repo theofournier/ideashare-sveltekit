@@ -63,6 +63,7 @@ export interface Database {
           url_links: string[] | null
           user_id: string | null
           work: Database["public"]["Enums"]["share_type"] | null
+          title_shortdesc: string | null
         }
         Insert: {
           anonymous?: boolean | null
@@ -526,6 +527,7 @@ export interface Database {
           id: string
           last_name: string | null
           updated_at: string | null
+          firstname_lastname: string | null
         }
         Insert: {
           avatar_name?: string | null
@@ -589,7 +591,18 @@ export interface Database {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      firstname_lastname: {
+        Args: {
+          "": unknown
+        }
+        Returns: string
+      }
+      title_shortdesc: {
+        Args: {
+          "": unknown
+        }
+        Returns: string
+      }
     }
     Enums: {
       approval_status: "approved" | "refused" | "pending"

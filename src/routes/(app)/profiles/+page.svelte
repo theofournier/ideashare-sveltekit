@@ -10,6 +10,15 @@
 	{#if !data.profiles}
 		<p>No profiles</p>
 	{:else}
+		<form method="POST" action="?/search">
+			<input
+				class="input input-bordered"
+				type="search"
+				placeholder="Search..."
+				name="search"
+				value={data.search}
+			/><button class="btn">Search</button>
+		</form>
 		{#each data.profiles as profile (profile.id)}
 			<ProfileItem {profile} />
 		{/each}
