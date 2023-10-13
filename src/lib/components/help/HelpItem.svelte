@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from '$app/stores';
 	import type { Help } from '$lib/data/post';
 	import type { Profile } from '$lib/data/users';
 	import Link from '../Link.svelte';
@@ -25,6 +26,7 @@
 	<p>{profile?.first_name} {profile?.last_name} ({help.user_id})</p>
 	<p>{help.created_at}</p>
 	{#if showDelete}
+		<a href={`/posts/${$page.params.postId}/helps/${help.id}/edit`} class="btn">Edit</a>
 		<form method="POST" action="?/delete-help">
 			<input type="hidden" name="id" value={help.id} />
 			<button class="btn">❌</button>

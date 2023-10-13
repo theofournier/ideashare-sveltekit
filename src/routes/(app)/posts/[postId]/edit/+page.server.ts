@@ -16,7 +16,7 @@ export const load: PageServerLoad = async ({ locals: { supabase, getSession }, p
 	if (!post) {
 		throw error(404, 'Post not found');
 	}
-	if (post?.user_id !== session.user.id) {
+	if (post.user_id !== session.user.id) {
 		throw error(403, 'You must be the owner to edit');
 	}
 

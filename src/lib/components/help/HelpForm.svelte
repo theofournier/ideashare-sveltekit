@@ -1,6 +1,8 @@
 <script lang="ts">
 	import HelpImage from './HelpImage.svelte';
 
+	export let title: string | null = null;
+	export let description: string | null = null;
 	export let helpLinks: string[] | null = null;
 	export let helpImages: string[] | null = null;
 
@@ -17,8 +19,13 @@
 </script>
 
 <div>
-	<input type="text" placeholder="Title" class="input input-bordered" name="title" />
-	<textarea class="textarea textarea-bordered" placeholder="Description" name="description" />
+	<input type="text" placeholder="Title" class="input input-bordered" name="title" value={title} />
+	<textarea
+		class="textarea textarea-bordered"
+		placeholder="Description"
+		name="description"
+		value={description}
+	/>
 	<input
 		class="file-input file-input-bordered"
 		type="file"
