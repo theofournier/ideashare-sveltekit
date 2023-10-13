@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import HelpItem from '$lib/components/HelpItem.svelte';
+	import HelpItem from '$lib/components/help/HelpItem.svelte';
 	export let data;
 </script>
 

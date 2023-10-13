@@ -1,5 +1,5 @@
 <script lang="ts">
-	import HelpItem from '$lib/components/HelpItem.svelte';
+	import HelpItem from '$lib/components/help/HelpItem.svelte';
 	export let data;
 </script>
 

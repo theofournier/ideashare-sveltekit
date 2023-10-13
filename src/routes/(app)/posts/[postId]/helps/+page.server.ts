@@ -14,7 +14,7 @@ export const load: PageServerLoad = async ({ locals: { supabase }, params }) => 
 };
 
 export const actions: Actions = {
-	delete: async ({ request, locals: { supabase, getSession } }) => {
+	'delete-help': async ({ request, locals: { supabase, getSession } }) => {
 		const session = await getSession();
 		if (!session) {
 			return fail(401, {
