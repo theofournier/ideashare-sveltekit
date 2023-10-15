@@ -24,14 +24,6 @@
 <div>
 	<form method="POST" action="?/update">
 		<input
-			name="email"
-			id="email"
-			class="input input-bordered"
-			value={session?.user?.email}
-			disabled
-		/>
-
-		<input
 			id="firstName"
 			name="firstName"
 			type="text"
@@ -50,6 +42,11 @@
 		/>
 
 		<button class="btn">Update my profile</button>
+	</form>
+	<form method="POST" action="?/update-email">
+		<input name="email" id="email" class="input input-bordered" value={session?.user?.email} />
+
+		<button class="btn">Update email</button>
 	</form>
 	<form action="?/avatar" method="POST" enctype="multipart/form-data">
 		<Avatar {avatarUrl} />

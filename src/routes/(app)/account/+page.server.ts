@@ -42,6 +42,34 @@ export const actions: Actions = {
 			}
 		};
 	},
+	'update-email': async ({ request, locals: { supabase, getSession } }) => {
+		const formData = await request.formData();
+		const email = formData.get('email')?.toString();
+
+		if (!email) {
+			return fail(404, {
+				error: 'Email required'
+			});
+		}
+
+		const session = await getSession();
+
+		if (!session) {
+			return fail(401, {
+				error: 'Invalid session'
+			});
+		}
+
+		const { error } = await supabase.auth.updateUser({ email: email?.trim() });
+
+		console.log('UPDATE EMAIL', error);
+
+		if (error) {
+			return fail(500, {
+				error: 'Server error. Try again later'
+			});
+		}
+	},
 	avatar: async ({ request, locals: { supabase, getSession } }) => {
 		const session = await getSession();
 
