@@ -1,5 +1,29 @@
-import { fail, redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
+import { error, fail, redirect } from '@sveltejs/kit';
+import type { Actions, PageServerLoad } from './$types';
+
+export const load: PageServerLoad = async ({ locals: { supabase, getSession }, params }) => {
+	const session = await getSession();
+	if (!session) {
+		throw error(401, 'You must be logged in');
+	}
+
+	const { data: post } = await supabase
+		.from('posts')
+		.select(
+			`
+        *
+   		`
+		)
+		.eq('id', params.postId)
+		.single();
+	if (!post) {
+		throw error(404, 'Post not found');
+	}
+
+	if (post.user_id !== session?.user.id && post.help === 'none') {
+		throw error(401, 'Not available');
+	}
+};
 
 export const actions: Actions = {
 	default: async ({ params, request, locals: { supabase, getSession } }) => {

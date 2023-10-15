@@ -1,15 +1,26 @@
 import { postActions } from '$lib/server/postActions';
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals: { supabase }, params }) => {
-	const { data, error } = await supabase
+export const load: PageServerLoad = async ({
+	locals: { supabase, getSession },
+	parent,
+	params
+}) => {
+	const { post } = await parent();
+	const session = await getSession();
+
+	if (post.user_id !== session?.user.id && post.help === 'none') {
+		throw error(401, 'Not available');
+	}
+
+	const { data, error: errorHelps } = await supabase
 		.from('posts_helps')
 		.select('*, profiles(*)')
 		.eq('post_id', params.postId)
 		.order('created_at', { ascending: false });
 
-	console.log('POST HELPS', error);
+	console.log('POST HELPS', errorHelps);
 	return { helps: data };
 };
 

@@ -1,18 +1,21 @@
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { postActions } from '$lib/server/postActions';
 
 export const load: PageServerLoad = async ({ locals: { supabase, getSession }, params }) => {
 	const session = await getSession();
+	if (!session) {
+		throw error(401, 'You must be logged in');
+	}
 
-	const { data, error } = await supabase
+	const { data, error: errorNotes } = await supabase
 		.from('posts_notes')
 		.select('*')
 		.eq('post_id', params.postId)
 		.eq('user_id', session?.user.id)
 		.order('created_at', { ascending: false });
 
-	console.log('POST NOTES', error);
+	console.log('POST NOTES', errorNotes);
 	return { notes: data };
 };
 

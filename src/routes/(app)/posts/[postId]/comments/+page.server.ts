@@ -1,15 +1,26 @@
-import { fail } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 import { postActions } from '$lib/server/postActions';
 
-export const load: PageServerLoad = async ({ locals: { supabase }, params }) => {
-	const { data, error } = await supabase
+export const load: PageServerLoad = async ({
+	locals: { supabase, getSession },
+	parent,
+	params
+}) => {
+	const { post } = await parent();
+	const session = await getSession();
+
+	if (post.user_id !== session?.user.id && post.comment === 'none') {
+		throw error(401, 'Not available');
+	}
+
+	const { data, error: errorComments } = await supabase
 		.from('posts_comments')
 		.select('*, profiles(*)')
 		.eq('post_id', params.postId)
 		.order('created_at', { ascending: false });
 
-	console.log('POST COMMENTS', error);
+	console.log('POST COMMENTS', errorComments);
 	return { comments: data };
 };
 

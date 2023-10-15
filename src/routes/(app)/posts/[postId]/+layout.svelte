@@ -10,6 +10,7 @@
 	$: isWork = post?.posts_works.some((work) => work.user_id === data.session?.user.id);
 	$: status = post?.posts_status.sort((a, b) => (a.created_at < b.created_at ? 1 : -1));
 	$: lastStatus = status.at(0)?.status;
+	$: isOwner = post.user_id === data.session?.user.id;
 </script>
 
 <div>
@@ -87,12 +88,14 @@
 			class="tab"
 			class:tab-active={$page.url.pathname === `/posts/${$page.params.postId}/notes`}>Notes</a
 		>
-		<a
-			href={`/posts/${$page.params.postId}/approvals`}
-			class="tab"
-			class:tab-active={$page.url.pathname === `/posts/${$page.params.postId}/approvals`}
-			>Approvals</a
-		>
+		{#if isOwner}
+			<a
+				href={`/posts/${$page.params.postId}/approvals`}
+				class="tab"
+				class:tab-active={$page.url.pathname === `/posts/${$page.params.postId}/approvals`}
+				>Approvals</a
+			>
+		{/if}
 	</div>
 	<slot />
 </div>
