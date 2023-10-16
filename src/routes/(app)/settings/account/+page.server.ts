@@ -111,5 +111,33 @@ export const actions: Actions = {
 				error: 'Fail update profile'
 			});
 		}
+	},
+	'update-password': async ({ request, locals: { supabase, getSession } }) => {
+		const formData = await request.formData();
+		const newPassword = formData.get('new-password')?.toString();
+
+		if (!newPassword) {
+			return fail(404, {
+				error: 'Passwords required'
+			});
+		}
+
+		const session = await getSession();
+
+		if (!session) {
+			return fail(401, {
+				error: 'Invalid session'
+			});
+		}
+
+		const { error } = await supabase.auth.updateUser({ password: newPassword });
+
+		console.log('UPDATE PASSWORD', error);
+
+		if (error) {
+			return fail(500, {
+				error: 'Server error. Try again later'
+			});
+		}
 	}
 };

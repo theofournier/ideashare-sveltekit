@@ -28,7 +28,10 @@
 						<a href="/login">Login</a>
 					</li>
 					<li>
-						<a href="/account">Account</a>
+						<a href={`/profiles/${data.session?.user.id}`}>My profile</a>
+					</li>
+					<li>
+						<a href="/settings">Settings</a>
 					</li>
 					<li>
 						<form action="/logout" method="POST">
