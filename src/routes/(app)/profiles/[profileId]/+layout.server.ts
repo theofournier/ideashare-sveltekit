@@ -1,7 +1,14 @@
-import { error } from '@sveltejs/kit';
+import { error, redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
-export const load = (async ({ locals: { supabase }, params }) => {
+export const load = (async ({ locals: { supabase, getSession }, params }) => {
+
+	if(params.profileId === "me") {
+		const session = await getSession();
+		if(!session) throw error(401, 'You must be logged in');
+		throw redirect(303, `/profiles/${session.user.id}`)
+	}
+
 	const { data, error: profileError } = await supabase
 		.from('profiles')
 		.select(`*, profiles_follows!profiles_follows_following_user_id_fkey(*)`)
