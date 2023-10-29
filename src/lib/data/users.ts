@@ -8,3 +8,4 @@ export type DefaultShareOptions =
 	Database['public']['Tables']['profiles_default_share_options']['Row'];
 export type DefaultShareOptionsUpdate =
 	Database['public']['Tables']['profiles_default_share_options']['Update'];
+export type ProfileApproval = Database['public']['Tables']['profiles_approvals']['Row'];

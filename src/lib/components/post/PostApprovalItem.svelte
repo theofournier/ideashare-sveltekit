@@ -15,11 +15,11 @@
 	<p>Help Id: {approval.help_id}</p>
 	<p>{approval.created_at}</p>
 	<p>Approver Id: {approval.approver_id}</p>
-	<form method="POST" action="?/approve">
+	<form method="POST" action="?/post-approve">
 		<input type="hidden" name="id" value={approval.id} />
 		<button class="btn">✅</button>
 	</form>
-	<form method="POST" action="?/refuse">
+	<form method="POST" action="?/post-refuse">
 		<input type="hidden" name="id" value={approval.id} />
 		<button class="btn">❌</button>
 	</form>

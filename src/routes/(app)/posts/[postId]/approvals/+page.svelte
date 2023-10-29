@@ -1,5 +1,5 @@
 <script lang="ts">
-	import ApprovalItem from '$lib/components/ApprovalItem.svelte';
+	import PostApprovalItem from '$lib/components/post/PostApprovalItem.svelte';
 	export let data;
 </script>
 
@@ -7,6 +7,6 @@
 	<p>No Post Approvals</p>
 {:else}
 	{#each data.postApprovals as approval (approval.id)}
-		<ApprovalItem {approval} />
+		<PostApprovalItem {approval} />
 	{/each}
 {/if}

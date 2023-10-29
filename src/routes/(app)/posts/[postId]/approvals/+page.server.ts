@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { postActions } from '$lib/server/postActions';
-import { approvalActions } from '$lib/server/approvalActions';
+import { postApprovalActions } from '$lib/server/postApprovalActions';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({
@@ -31,5 +31,5 @@ export const load: PageServerLoad = async ({
 
 export const actions: Actions = {
 	...postActions,
-	...approvalActions
+	...postApprovalActions
 };

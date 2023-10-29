@@ -1,7 +1,7 @@
 import { fail, type Actions } from '@sveltejs/kit';
 
-export const approvalActions: Actions = {
-	approve: async ({ request, locals: { supabase, getSession } }) => {
+export const profileApprovalActions: Actions = {
+	'profile-approve': async ({ request, locals: { supabase, getSession } }) => {
 		const session = await getSession();
 		if (!session) {
 			return fail(401, {
@@ -18,13 +18,13 @@ export const approvalActions: Actions = {
 		}
 
 		const { error } = await supabase
-			.from('posts_approvals')
+			.from('profiles_approvals')
 			.update({ status: 'approved' })
 			.eq('id', id);
 
 		console.log('APPROVE', error);
 	},
-	refuse: async ({ request, locals: { supabase, getSession } }) => {
+	'profile-refuse': async ({ request, locals: { supabase, getSession } }) => {
 		const session = await getSession();
 		if (!session) {
 			return fail(401, {
@@ -41,7 +41,7 @@ export const approvalActions: Actions = {
 		}
 
 		const { error } = await supabase
-			.from('posts_approvals')
+			.from('profiles_approvals')
 			.update({ status: 'refused' })
 			.eq('id', id);
 
