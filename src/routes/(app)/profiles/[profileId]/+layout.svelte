@@ -7,6 +7,7 @@
 	$: isFollow = profile?.profiles_follows.some(
 		(follower) => follower.follower_user_id === data.session?.user.id
 	);
+	$: isCurrentUser = profile.id === data.session?.user.id;
 </script>
 
 <div>
@@ -47,12 +48,14 @@
 			class:tab-active={$page.url.pathname ===
 				`/profiles/${$page.params.profileId}/profiles-following`}>Profiles Following</a
 		>
-		<a
-			href={`/profiles/${$page.params.profileId}/approvals`}
-			class="tab"
-			class:tab-active={$page.url.pathname === `/profiles/${$page.params.profileId}/approvals`}
-			>Approvals</a
-		>
+		{#if isCurrentUser}
+			<a
+				href={`/profiles/${$page.params.profileId}/approvals`}
+				class="tab"
+				class:tab-active={$page.url.pathname === `/profiles/${$page.params.profileId}/approvals`}
+				>Approvals</a
+			>
+		{/if}
 	</div>
 	<slot />
 </div>
