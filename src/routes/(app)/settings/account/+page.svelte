@@ -78,4 +78,10 @@
 			<button type="submit" class="btn">Update password</button>
 		</form>
 	</div>
+	<div>
+		<h2>Delete your account</h2>
+		<form action="?/delete-account" method="POST">
+			<button type="submit" class="btn btn-error">Confirm delete account</button>
+		</form>
+	</div>
 </div>

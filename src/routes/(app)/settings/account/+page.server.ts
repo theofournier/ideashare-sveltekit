@@ -1,4 +1,4 @@
-import { fail } from '@sveltejs/kit';
+import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 export const actions: Actions = {
@@ -19,11 +19,13 @@ export const actions: Actions = {
 			});
 		}
 
-		const { error } = await supabase.from('profiles').upsert({
-			id: session?.user.id,
+		const { error } = await supabase.from('profiles').update({
 			first_name: firstName,
 			last_name: lastName
-		});
+		})
+		.eq("id", session.user.id);
+
+		console.log("UPDATE ACCOUNT", error)
 
 		if (error) {
 			return fail(500, {
@@ -139,5 +141,26 @@ export const actions: Actions = {
 				error: 'Server error. Try again later'
 			});
 		}
+	},
+	'delete-account': async ({ locals: { supabase, getSession } }) => {
+		const session = await getSession();
+
+		if (!session) {
+			return fail(401, {
+				error: 'Invalid session'
+			});
+		}
+
+		const { error } = await supabase.auth.admin.deleteUser(session.user.id);
+
+		console.log('DELETE ACCOUNT', error);
+
+		if (error) {
+			return fail(500, {
+				error: 'Server error. Try again later'
+			});
+		}
+		await supabase.auth.signOut();
+		throw redirect(303, "/")
 	}
 };
