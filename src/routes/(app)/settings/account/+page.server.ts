@@ -19,13 +19,15 @@ export const actions: Actions = {
 			});
 		}
 
-		const { error } = await supabase.from('profiles').update({
-			first_name: firstName,
-			last_name: lastName
-		})
-		.eq("id", session.user.id);
+		const { error } = await supabase
+			.from('profiles')
+			.update({
+				first_name: firstName,
+				last_name: lastName
+			})
+			.eq('id', session.user.id);
 
-		console.log("UPDATE ACCOUNT", error)
+		console.log('UPDATE ACCOUNT', error);
 
 		if (error) {
 			return fail(500, {
@@ -161,6 +163,6 @@ export const actions: Actions = {
 			});
 		}
 		await supabase.auth.signOut();
-		throw redirect(303, "/")
+		throw redirect(303, '/');
 	}
 };

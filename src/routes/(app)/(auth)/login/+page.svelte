@@ -1,5 +1,4 @@
 <script lang="ts">
-
 	export let form;
 </script>
 
@@ -28,5 +27,5 @@
 		{/if}
 		<button class="btn">Login</button>
 	</form>
-	<p>Don't have an account? <a href="/register" class='link'>Register here</a></p>
+	<p>Don't have an account? <a href="/register" class="link">Register here</a></p>
 </div>

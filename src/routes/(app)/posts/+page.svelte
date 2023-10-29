@@ -11,9 +11,13 @@
 		<p>No posts</p>
 	{:else}
 		<form method="POST" action="?/search">
-			<input class="input input-bordered" type="search" placeholder="Search..." name="search" value={data.search} /><button
-				class="btn">Search</button
-			>
+			<input
+				class="input input-bordered"
+				type="search"
+				placeholder="Search..."
+				name="search"
+				value={data.search}
+			/><button class="btn">Search</button>
 		</form>
 		{#each data.posts as post (post.id)}
 			<PostItem

@@ -3,14 +3,17 @@ import { postActions } from '$lib/server/postActions';
 import { approvalActions } from '$lib/server/approvalActions';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals: { supabase, getSession }, parent, params }) => {
+export const load: PageServerLoad = async ({
+	locals: { supabase, getSession },
+	parent,
+	params
+}) => {
 	const { post } = await parent();
 	const session = await getSession();
 
-	if(post.user_id !== session?.user.id) {
+	if (post.user_id !== session?.user.id) {
 		throw error(401, 'Unauthorized');
 	}
-
 
 	const { data, error: errorApprovals } = await supabase
 		.from('posts_approvals')
