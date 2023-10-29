@@ -7,9 +7,10 @@
 	export let avatarName: string | undefined | null = undefined;
 	export let firstName: string | undefined | null = undefined;
 	export let lastName: string | undefined | null = undefined;
+	export let width = 'w-12';
 
 	$: url = avatarUrl || getAvatarUrl(avatarName);
 	$: initials = getInitials(firstName, lastName);
 </script>
 
-<Avatar src={url} {initials} width="w-12" rounded="rounded-full" />
+<Avatar src={url} {initials} {width} rounded="rounded-full" />

@@ -2,6 +2,7 @@
 	import { AppBar, popup } from '@skeletonlabs/skeleton';
 	import Avatar from './Avatar.svelte';
 	import type { UserProfile } from '$lib/data/users';
+	import { page } from '$app/stores';
 
 	export let user: UserProfile | undefined | null;
 
@@ -10,17 +11,31 @@
 		{ href: '/profiles/me', title: 'My profile' },
 		{ href: '/settings', title: 'Settings' }
 	];
+	const nav: { href: string; title: string }[] = [
+		{ href: '/posts', title: 'Posts' },
+		{ href: '/posts/create', title: 'New post' },
+		{ href: '/profiles', title: 'Profiles' }
+	];
+
+	$: classActive = (href: string) =>
+		$page.url.pathname === href ? '!variant-soft-primary' : '';
 </script>
 
-<AppBar>
+<AppBar padding="px-4 py-2">
 	<svelte:fragment slot="lead">
-		<a href="/" class="btn">IdeaShare</a>
+		<a href="/" class="btn bg-gradient-to-br variant-gradient-tertiary-primary">IdeaShare</a>
 	</svelte:fragment>
 	<svelte:fragment slot="trail">
 		<div>
-			<a href="/posts" class="btn">Posts</a>
-			<a href="/posts/create" class="btn">Create</a>
-			<a href="/profiles" class="btn">Profiles</a>
+			<ul class="list-nav flex gap-2">
+				{#each nav as item}
+					<li>
+						<a href={item.href} class="btn variant-soft {classActive(item.href)}">
+							{item.title}
+						</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 		<div>
 			<button
