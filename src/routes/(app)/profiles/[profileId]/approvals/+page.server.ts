@@ -20,7 +20,6 @@ export const load: PageServerLoad = async ({ locals: { supabase, getSession }, p
 		.eq('approver_id', params.profileId)
 		.order('created_at', { ascending: false });
 	console.log('POST APPROVALS', errorPostApprovals);
-	
 
 	const { data: profileApprovals, error: errorProfileApprovals } = await supabase
 		.from('profiles_approvals')
@@ -39,5 +38,5 @@ export const load: PageServerLoad = async ({ locals: { supabase, getSession }, p
 export const actions: Actions = {
 	...profileActions,
 	...postApprovalActions,
-	...profileApprovalActions,
+	...profileApprovalActions
 };
