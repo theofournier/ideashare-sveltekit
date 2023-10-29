@@ -518,23 +518,44 @@ export interface Database {
 				Row: {
 					avatar_name: string | null;
 					first_name: string | null;
+					follow: Database['public']['Enums']['share_type'] | null;
+					helps: Database['public']['Enums']['share_type'] | null;
 					id: string;
 					last_name: string | null;
+					posts: Database['public']['Enums']['share_type'] | null;
+					posts_following: Database['public']['Enums']['share_type'] | null;
+					posts_working: Database['public']['Enums']['share_type'] | null;
+					privacy: Database['public']['Enums']['privacy'] | null;
+					profiles_following: Database['public']['Enums']['share_type'] | null;
 					updated_at: string | null;
 					firstname_lastname: string | null;
 				};
 				Insert: {
 					avatar_name?: string | null;
 					first_name?: string | null;
+					follow?: Database['public']['Enums']['share_type'] | null;
+					helps?: Database['public']['Enums']['share_type'] | null;
 					id: string;
 					last_name?: string | null;
+					posts?: Database['public']['Enums']['share_type'] | null;
+					posts_following?: Database['public']['Enums']['share_type'] | null;
+					posts_working?: Database['public']['Enums']['share_type'] | null;
+					privacy?: Database['public']['Enums']['privacy'] | null;
+					profiles_following?: Database['public']['Enums']['share_type'] | null;
 					updated_at?: string | null;
 				};
 				Update: {
 					avatar_name?: string | null;
 					first_name?: string | null;
+					follow?: Database['public']['Enums']['share_type'] | null;
+					helps?: Database['public']['Enums']['share_type'] | null;
 					id?: string;
 					last_name?: string | null;
+					posts?: Database['public']['Enums']['share_type'] | null;
+					posts_following?: Database['public']['Enums']['share_type'] | null;
+					posts_working?: Database['public']['Enums']['share_type'] | null;
+					privacy?: Database['public']['Enums']['privacy'] | null;
+					profiles_following?: Database['public']['Enums']['share_type'] | null;
 					updated_at?: string | null;
 				};
 				Relationships: [

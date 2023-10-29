@@ -70,14 +70,22 @@ export const actions: Actions = {
 			});
 		}
 
-		const { error: errorDelete } = await supabase
-			.from('profiles_default_share_options')
-			.delete()
-			.eq('user_id', session.user.id);
-		console.log('DELETE DEFAULT SHARE OPTIONS', errorDelete);
 		const { error } = await supabase
 			.from('profiles_default_share_options')
-			.insert({ user_id: session.user.id });
-		console.log('INSERT DEFAULT SHARE OPTIONS', error);
+			.update({
+				privacy: 'public',
+				anonymous: false,
+				like: 'all',
+				comment: 'all',
+				help: 'all',
+				link_post: 'all',
+				work: 'all',
+				contact: 'all',
+				follow: 'all',
+				status: 'work'
+			})
+			.eq('user_id', session.user.id);
+
+		console.log('UPDATE DEFAULT SHARE OPTIONS', error);
 	}
 };
