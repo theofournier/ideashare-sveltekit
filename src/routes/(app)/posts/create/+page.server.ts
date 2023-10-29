@@ -7,10 +7,17 @@ export const load: PageServerLoad = async ({ locals: { supabase, getSession } })
 	if (!session) {
 		throw error(403, 'You must be logged in');
 	}
-	const { data, error: labelsError } = await supabase.from('labels').select('*');
-
+	const { data: labels, error: labelsError } = await supabase.from('labels').select('*');
 	console.log('LABELS', labelsError);
-	return { labels: data };
+
+	const { data: defaultShareOptions, error: errorDefaultShareOptions } = await supabase
+		.from('profiles_default_share_options')
+		.select('*')
+		.eq('user_id', session.user.id)
+		.single();
+	console.log('DEFAULT_SHARE_OPTIONS', errorDefaultShareOptions);
+
+	return { labels, defaultShareOptions };
 };
 
 export const actions: Actions = {

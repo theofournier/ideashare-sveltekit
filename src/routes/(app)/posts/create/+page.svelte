@@ -38,7 +38,18 @@
 		<InfoSection />
 		<LabelsSection labels={data.labels} />
 		<AdditionalInfoSection />
-		<ShareOptionsSection />
+		<ShareOptionsSection
+			privacy={data.defaultShareOptions?.privacy}
+			anonymous={data.defaultShareOptions?.anonymous}
+			like={data.defaultShareOptions?.like}
+			comment={data.defaultShareOptions?.comment}
+			help={data.defaultShareOptions?.help}
+			link_post={data.defaultShareOptions?.link_post}
+			work={data.defaultShareOptions?.work}
+			contact={data.defaultShareOptions?.contact}
+			follow={data.defaultShareOptions?.follow}
+			status={data.defaultShareOptions?.status}
+		/>
 		<button type="submit" class="btn">Save</button>
 	</form>
 </div>
