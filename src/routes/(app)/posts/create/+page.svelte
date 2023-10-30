@@ -46,6 +46,6 @@
 				/>
 			</FormPostSection>
 		</Accordion>
-		<button type="submit" class="btn">Save</button>
+		<button type="submit" class="btn variant-filled-primary">Save</button>
 	</form>
 </div>
