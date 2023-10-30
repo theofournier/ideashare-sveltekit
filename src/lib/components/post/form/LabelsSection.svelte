@@ -5,9 +5,9 @@
 	export let postLabels: PostLabel[] = [];
 </script>
 
-<ul id="labels" class="list space-y-2">
+<ul id="labels" class="list">
 	{#each labels as label (label.value)}
-		<label class="cursor-pointer flex items-center space-x-2 list-option">
+		<label class="cursor-pointer flex items-center gap-2 list-option">
 			<input
 				type="checkbox"
 				class="checkbox"

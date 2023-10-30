@@ -7,14 +7,4 @@
 	$: url = postImageUrl || getPostImageUrl(postImageName);
 </script>
 
-{#if url}
-	<div class="avatar">
-		<div class="rounded-md w-32">
-			<img src={url} alt={url} />
-		</div>
-	</div>
-{:else}
-	<div class="avatar">
-		<div class="rounded-full w-32 bg-black" />
-	</div>
-{/if}
+<img class="w-32 h-32 rounded-md object-cover" src={url} alt={url} />
