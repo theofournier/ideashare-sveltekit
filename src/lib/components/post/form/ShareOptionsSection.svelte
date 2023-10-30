@@ -13,8 +13,7 @@
 	export let status: ShareType | null = null;
 </script>
 
-<div id="share-options" class="bg-base-200 my-4">
-	<div class="text-xl">Share options</div>
+<div id="share-options">
 	<div class="form-control">
 		<label class="label cursor-pointer">
 			<span class="label-text">Private</span>

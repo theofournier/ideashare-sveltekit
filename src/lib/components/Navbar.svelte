@@ -17,8 +17,7 @@
 		{ href: '/profiles', title: 'Profiles' }
 	];
 
-	$: classActive = (href: string) =>
-		$page.url.pathname === href ? '!variant-soft-primary' : '';
+	$: classActive = (href: string) => ($page.url.pathname === href ? '!variant-soft-primary' : '');
 </script>
 
 <AppBar padding="px-4 py-2">
@@ -50,7 +49,7 @@
 					lastName={user?.last_name}
 				/>
 			</button>
-			<div class="card w-40 shadow-xl" data-popup="popupAvatarMenu">
+			<div class="card w-40 shadow-xl p-2" data-popup="popupAvatarMenu">
 				<ul class="list-nav">
 					{#each avatarMenu as menu}
 						<li>
@@ -61,8 +60,9 @@
 					{/each}
 				</ul>
 				<form action="/logout" method="POST">
-					<button class="btn w-full justify-start variant-filled-error" type="submit">Logout</button
-					>
+					<button class="btn w-full justify-start variant-filled-error" type="submit">
+						Logout
+					</button>
 				</form>
 			</div>
 		</div>

@@ -4,8 +4,7 @@
 	export let longDescription: string | null = null;
 </script>
 
-<div id="info" class="bg-base-200 my-4">
-	<div class="text-xl">Give some information</div>
+<div id="info">
 	<input type="text" placeholder="Title" class="input input-bordered" name="title" value={title} />
 	<textarea
 		class="textarea textarea-bordered"

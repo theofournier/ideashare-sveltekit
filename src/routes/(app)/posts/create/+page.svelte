@@ -3,53 +3,49 @@
 	import InfoSection from '$lib/components/post/form/InfoSection.svelte';
 	import LabelsSection from '$lib/components/post/form/LabelsSection.svelte';
 	import ShareOptionsSection from '$lib/components/post/form/ShareOptionsSection.svelte';
+	import FormPostSection from '$lib/components/post/form/FormPostSection.svelte';
+	import { Accordion } from '@skeletonlabs/skeleton';
+	import CategoryCard from '$lib/components/post/form/CategoryCard.svelte';
 
 	export let data;
 </script>
 
-<div>
-	Welcome
+<div class="w-4/5 m-auto">
+	Welcome.....
 	<form method="POST" enctype="multipart/form-data">
-		<div id="category" class="bg-base-200 my-4">
-			<div class="text-xl">Choose a post category</div>
-			<div>
-				<input type="radio" id="idea" name="postType" value="idea" class="hidden peer" />
-				<label for="idea" class="cursor-pointer peer-checked:text-blue-600">
-					<div class="card shadow-lg">
-						<div class="card-body">
-							<h2 class="card-title">Idea</h2>
-							<p>Do you have an idea?</p>
-						</div>
-					</div>
-				</label>
-			</div>
-			<div>
-				<input type="radio" id="issue" name="postType" value="issue" class="hidden peer" />
-				<label for="issue" class="cursor-pointer peer-checked:text-blue-600">
-					<div class="card shadow-lg">
-						<div class="card-body">
-							<h2 class="card-title">Issue</h2>
-							<p>Do you have an issue?</p>
-						</div>
-					</div>
-				</label>
-			</div>
-		</div>
-		<InfoSection />
-		<LabelsSection labels={data.labels} />
-		<AdditionalInfoSection />
-		<ShareOptionsSection
-			privacy={data.defaultShareOptions?.privacy}
-			anonymous={data.defaultShareOptions?.anonymous}
-			like={data.defaultShareOptions?.like}
-			comment={data.defaultShareOptions?.comment}
-			help={data.defaultShareOptions?.help}
-			link_post={data.defaultShareOptions?.link_post}
-			work={data.defaultShareOptions?.work}
-			contact={data.defaultShareOptions?.contact}
-			follow={data.defaultShareOptions?.follow}
-			status={data.defaultShareOptions?.status}
-		/>
+		<Accordion>
+			<FormPostSection title="Choose a category">
+				<div id="category" class="flex flex-col gap-2">
+					<CategoryCard value="idea" title="Idea" description="Do you have an idea?" />
+					<CategoryCard value="issue" title="Issue" description="Do you have an issue?" />
+				</div>
+			</FormPostSection>
+			<FormPostSection title="Provide required information">
+				<InfoSection />
+			</FormPostSection>
+			{#if data.labels && data.labels.length > 0}
+				<FormPostSection title="Add some labels">
+					<LabelsSection labels={data.labels} />
+				</FormPostSection>
+			{/if}
+			<FormPostSection title="Provide additional information">
+				<AdditionalInfoSection />
+			</FormPostSection>
+			<FormPostSection title="Choose the share options">
+				<ShareOptionsSection
+					privacy={data.defaultShareOptions?.privacy}
+					anonymous={data.defaultShareOptions?.anonymous}
+					like={data.defaultShareOptions?.like}
+					comment={data.defaultShareOptions?.comment}
+					help={data.defaultShareOptions?.help}
+					link_post={data.defaultShareOptions?.link_post}
+					work={data.defaultShareOptions?.work}
+					contact={data.defaultShareOptions?.contact}
+					follow={data.defaultShareOptions?.follow}
+					status={data.defaultShareOptions?.status}
+				/>
+			</FormPostSection>
+		</Accordion>
 		<button type="submit" class="btn">Save</button>
 	</form>
 </div>

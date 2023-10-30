@@ -17,8 +17,7 @@
 	};
 </script>
 
-<div id="additional-info" class="bg-base-200 my-4">
-	<div class="text-xl">Additional info</div>
+<div id="additional-info">
 	<select class="select select-bordered" name="language" value={language || 'English'}>
 		<option>English</option>
 		<option>French</option>
