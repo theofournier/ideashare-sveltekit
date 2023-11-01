@@ -17,7 +17,7 @@
 	};
 </script>
 
-<div id="additional-info" class="flex flex-col gap-2 items-start">
+<div id="additional-info" class="flex flex-col gap-4 items-start">
 	<label class="label">
 		<p>Choose the language of the post</p>
 		<select class="select" name="language" value={language || 'English'}>
@@ -40,13 +40,13 @@
 			/>
 		</label>
 		{#if selectedImages.length > 0}
-			<div class="flex gap-2">
+			<div class="flex flex-wrap gap-2">
 				{#each selectedImages as postImage}
 					<PostImage postImageUrl={postImage} />
 				{/each}
 			</div>
 		{:else if postImages && postImages.length > 0}
-			<div class="flex gap-2">
+			<div class="flex flex-wrap gap-2">
 				{#each postImages as postImage}
 					<PostImage postImageName={postImage} />
 				{/each}
@@ -54,34 +54,39 @@
 		{/if}
 	</div>
 	<div class="flex flex-col gap-2 items-start">
-		<button
-			type="button"
-			class="btn variant-filled-secondary"
-			on:click={() => {
-				selectedLinks = [...selectedLinks, ''];
-			}}>Add link</button
-		>
-		{#each selectedLinks as link, index (index)}
-			<div class="flex gap-2">
-				<input
-					type="url"
-					placeholder={`Link ${index + 1}`}
-					class="input"
-					name="link"
-					value={link !== '' ? link : null}
-					on:change={(e) => {
-						selectedLinks[index] = e.currentTarget.value;
-					}}
-				/>
-				<button
-					type="button"
-					class="btn variant-soft-error"
-					on:click={() => {
-						selectedLinks.splice(index, 1);
-						selectedLinks = selectedLinks;
-					}}>Remove</button
-				>
-			</div>
-		{/each}
+		<label>
+			<p>Add links</p>
+			<button
+				type="button"
+				class="btn variant-filled-primary"
+				on:click={() => {
+					selectedLinks = [...selectedLinks, ''];
+				}}>Add link</button
+			>
+		</label>
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+			{#each selectedLinks as link, index (index)}
+				<div class="flex gap-1">
+					<input
+						type="url"
+						placeholder={`Link ${index + 1}`}
+						class="input"
+						name="link"
+						value={link !== '' ? link : null}
+						on:change={(e) => {
+							selectedLinks[index] = e.currentTarget.value;
+						}}
+					/>
+					<button
+						type="button"
+						class="btn variant-soft-error"
+						on:click={() => {
+							selectedLinks.splice(index, 1);
+							selectedLinks = selectedLinks;
+						}}>Remove</button
+					>
+				</div>
+			{/each}
+		</div>
 	</div>
 </div>

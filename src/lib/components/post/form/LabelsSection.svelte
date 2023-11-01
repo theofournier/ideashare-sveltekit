@@ -10,7 +10,7 @@
 		<label class="cursor-pointer flex items-center gap-2 list-option">
 			<input
 				type="checkbox"
-				class="checkbox"
+				class="checkbox checked:variant-filled-secondary"
 				name="label"
 				value={label.value}
 				checked={postLabels.some((postLabel) => label.value === postLabel.label_id)}

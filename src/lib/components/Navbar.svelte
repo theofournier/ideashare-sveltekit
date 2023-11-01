@@ -49,21 +49,23 @@
 					lastName={user?.last_name}
 				/>
 			</button>
-			<div class="card w-40 shadow-xl p-2" data-popup="popupAvatarMenu">
-				<ul class="list-nav">
-					{#each avatarMenu as menu}
-						<li>
-							<a href={menu.href}>
-								{menu.title}
-							</a>
-						</li>
-					{/each}
-				</ul>
-				<form action="/logout" method="POST">
-					<button class="btn w-full justify-start variant-filled-error" type="submit">
-						Logout
-					</button>
-				</form>
+			<div data-popup="popupAvatarMenu">
+				<div class="card w-40 shadow-xl p-2">
+					<ul class="list-nav">
+						{#each avatarMenu as menu}
+							<li>
+								<a href={menu.href}>
+									{menu.title}
+								</a>
+							</li>
+						{/each}
+					</ul>
+					<form action="/logout" method="POST">
+						<button class="btn w-full justify-start variant-filled-error" type="submit">
+							Logout
+						</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</svelte:fragment>

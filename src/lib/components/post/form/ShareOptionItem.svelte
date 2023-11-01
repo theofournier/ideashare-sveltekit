@@ -28,8 +28,8 @@
 	<RadioGroup>
 		{#each values as value}
 			<RadioItem
-				active="variant-filled-primary"
-				hover="hover:variant-soft-primary"
+				active="variant-filled-secondary"
+				hover="hover:variant-soft-secondary"
 				bind:group={currentValue}
 				{name}
 				{value}
