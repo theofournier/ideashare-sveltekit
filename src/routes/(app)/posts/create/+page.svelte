@@ -4,44 +4,39 @@
 	import LabelsSection from '$lib/components/post/form/LabelsSection.svelte';
 	import ShareOptionsSection from '$lib/components/post/form/ShareOptionsSection.svelte';
 	import FormPostSection from '$lib/components/post/form/FormPostSection.svelte';
-	import { Accordion, AppBar, popup } from '@skeletonlabs/skeleton';
-	import { getModalStore } from '@skeletonlabs/skeleton';
 	import CategoryCard from '$lib/components/post/form/CategoryCard.svelte';
+	import CrossIcon from '$lib/components/icons/CrossIcon.svelte';
 
 	export let data;
-
-	const modalStore = getModalStore();
 </script>
 
 <div>
 	<form method="POST" enctype="multipart/form-data">
-		<AppBar class="sticky top-0 z-10" background="bg-surface-800/50 backdrop-blur-md">
-			<svelte:fragment slot="lead">
-				<h3 class="h3">Create a new post</h3>
-			</svelte:fragment>
-			<svelte:fragment slot="trail">
-				<button type="submit" class="btn variant-filled-primary">Save</button>
-				<div>
-					<button
-						use:popup={{
-							event: 'click',
-							target: 'popupCloseCreatePost'
-						}}
-						type="button"
-						class="btn variant-ghost-error">X</button
-					>
-					<div data-popup="popupCloseCreatePost">
-						<div class="card flex flex-col w-48 shadow-xl py-2 px-4 gap-2">
+		<div class="navbar bg-base-100/50 backdrop-blur-md sticky top-[60px] z-10">
+			<div class="navbar-start">
+				<h3>Create a new post</h3>
+			</div>
+			<div class="navbar-end gap-2">
+				<button type="submit" class="btn btn-primary">Save</button>
+				<div class="dropdown dropdown-end">
+					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+					<!-- svelte-ignore a11y-label-has-associated-control -->
+					<label tabindex="0" class="btn btn-error btn-circle">
+						<CrossIcon />
+					</label>
+					<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+					<div tabindex="0" class="dropdown-content z-10 mt-1 p-2 shadow-xl bg-base-100 w-40">
+						<div class="flex flex-col gap-2">
 							<p class="text-center">This will discard your changes!</p>
-							<a href="/posts" class="btn variant-filled-error">Discard</a>
+							<a href="/posts" class="btn btn-error w-full">Discard</a>
 						</div>
 					</div>
 				</div>
-			</svelte:fragment>
-		</AppBar>
-		<div class="w-[80%] mx-auto my-4">
+			</div>
+		</div>
+		<div class="w-[90%] sm:w-[80%] mx-auto my-4">
 			Welcome.....
-			<Accordion>
+			<div class="flex flex-col gap-2">
 				<FormPostSection title="Choose a category">
 					<div id="category" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
 						<CategoryCard value="idea" title="Idea" description="Do you have an idea?" checked />
@@ -73,7 +68,7 @@
 						status={data.defaultShareOptions?.status}
 					/>
 				</FormPostSection>
-			</Accordion>
+			</div>
 		</div>
 	</form>
 </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CrossIcon from '$lib/components/icons/CrossIcon.svelte';
 	import PostImage from '../PostImage.svelte';
 
 	export let language: string | null = null;
@@ -18,18 +19,24 @@
 </script>
 
 <div id="additional-info" class="flex flex-col gap-4 items-start">
-	<label class="label">
-		<p>Choose the language of the post</p>
+	<div class="form-control max-w-xs">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<span class="label-text">Choose the language of the post</span>
+		</label>
 		<select class="select" name="language" value={language || 'English'}>
 			<option>English</option>
 			<option>French</option>
 		</select>
-	</label>
+	</div>
 	<div class="flex flex-col gap-2">
-		<label class="label">
-			<p>Add images</p>
+		<div class="form-control max-w-xs">
+			<!-- svelte-ignore a11y-label-has-associated-control -->
+			<label class="label">
+				<span class="label-text">Add images</span>
+			</label>
 			<input
-				class="input"
+				class="file-input file-input-secondary"
 				type="file"
 				accept=".png,.jpg"
 				name="postImages"
@@ -38,7 +45,7 @@
 				bind:files
 				on:change={onChangePostImages}
 			/>
-		</label>
+		</div>
 		{#if selectedImages.length > 0}
 			<div class="flex flex-wrap gap-2">
 				{#each selectedImages as postImage}
@@ -54,19 +61,22 @@
 		{/if}
 	</div>
 	<div class="flex flex-col gap-2 items-start">
-		<label>
-			<p>Add links</p>
+		<div class="form-control">
+			<!-- svelte-ignore a11y-label-has-associated-control -->
+			<label class="label">
+				<span class="label-text">Add links</span>
+			</label>
 			<button
 				type="button"
-				class="btn variant-filled-primary"
+				class="btn btn-secondary"
 				on:click={() => {
 					selectedLinks = [...selectedLinks, ''];
 				}}>Add link</button
 			>
-		</label>
+		</div>
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
 			{#each selectedLinks as link, index (index)}
-				<div class="flex gap-1">
+				<div class="flex gap-1 items-center">
 					<input
 						type="url"
 						placeholder={`Link ${index + 1}`}
@@ -79,12 +89,14 @@
 					/>
 					<button
 						type="button"
-						class="btn variant-soft-error"
+						class="btn btn-circle btn-error btn-sm"
 						on:click={() => {
 							selectedLinks.splice(index, 1);
 							selectedLinks = selectedLinks;
-						}}>Remove</button
+						}}
 					>
+						<CrossIcon />
+					</button>
 				</div>
 			{/each}
 		</div>

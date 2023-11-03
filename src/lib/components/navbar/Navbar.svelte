@@ -20,7 +20,7 @@
 	$: classActive = (href: string) => ($page.url.pathname === href ? 'active' : '');
 </script>
 
-<div class="navbar z-10 bg-base-100/50 backdrop-blur-md sticky top-0">
+<div class="navbar z-20 bg-base-100/50 backdrop-blur-md sticky top-0">
 	<div class="navbar-start">
 		<a href="/" class="btn btn-ghost normal-case text-xl">IdeaShare</a>
 	</div>
@@ -28,7 +28,7 @@
 		<div class="dropdown dropdown-end">
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 			<!-- svelte-ignore a11y-label-has-associated-control -->
-			<label tabindex="0" class="btn btn-ghost btn-sm md:hidden">
+			<label tabindex="0" class="btn btn-ghost md:hidden">
 				<HamburgerIcon />
 			</label>
 			<!-- svelte-ignore a11y-no-noninteractive-tabindex -->

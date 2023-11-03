@@ -1,14 +1,10 @@
 <script lang="ts">
-	import { AccordionItem } from '@skeletonlabs/skeleton';
-
-    export let title: string;
+	export let title: string;
 </script>
 
-<AccordionItem open>
-	<svelte:fragment slot="summary">
-		<h3 class="h3">{title}</h3>
-	</svelte:fragment>
-	<svelte:fragment slot="content">
+<div class="card bg-base-200">
+	<div class="card-body p-4">
+		<div class="card-title">{title}</div>
 		<slot />
-	</svelte:fragment>
-</AccordionItem>
+	</div>
+</div>

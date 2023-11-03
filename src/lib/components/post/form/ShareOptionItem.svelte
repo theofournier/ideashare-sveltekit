@@ -1,11 +1,10 @@
 <script lang="ts">
 	import type { ShareType } from '$lib/data/post';
-	import { RadioGroup, RadioItem } from '@skeletonlabs/skeleton';
 
 	export let title: string;
 	export let name: string;
 	export let values: ShareType[];
-	export let defaultValue: string | null;
+	export let defaultValue: ShareType | null;
 
 	const getLabel = (value: ShareType) => {
 		switch (value) {
@@ -19,23 +18,23 @@
 				return 'None';
 		}
 	};
-
-	$: currentValue = defaultValue || 'all';
 </script>
 
-<div class="flex flex-col items-start">
-	<h5 class="h5">{title}</h5>
-	<RadioGroup>
-		{#each values as value}
-			<RadioItem
-				active="variant-filled-secondary"
-				hover="hover:variant-soft-secondary"
-				bind:group={currentValue}
+<div class="form-control">
+	<!-- svelte-ignore a11y-label-has-associated-control -->
+	<label class="label">
+		<span class="label-text">{title}</span>
+	</label>
+	<div class="join">
+		{#each values as value (value)}
+			<input
+				class="join-item btn btn-outline btn-sm checked:!bg-secondary checked:!border-secondary checked:bg-none"
+				type="radio"
 				{name}
+				aria-label={getLabel(value)}
 				{value}
-			>
-				{getLabel(value)}
-			</RadioItem>
+				checked={value === (defaultValue ?? 'all')}
+			/>
 		{/each}
-	</RadioGroup>
+	</div>
 </div>

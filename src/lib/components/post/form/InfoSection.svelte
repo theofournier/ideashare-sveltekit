@@ -5,21 +5,30 @@
 </script>
 
 <div id="info" class="flex flex-col gap-2">
-	<label class="label">
-		<span>Title</span>
+	<div class="form-control">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<span class="label-text">Title</span>
+		</label>
 		<input type="text" placeholder="Title" class="input" name="title" value={title} required />
-	</label>
-	<label class="label">
-		<span>Short description</span>
+	</div>
+	<div class="form-control">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<span class="label-text">Short description</span>
+		</label>
 		<textarea
 			class="textarea"
 			placeholder="Short description"
 			name="shortDescription"
 			value={shortDescription}
 		/>
-	</label>
-	<label class="label">
-		<span>Long description</span>
+	</div>
+	<div class="form-control">
+		<!-- svelte-ignore a11y-label-has-associated-control -->
+		<label class="label">
+			<span class="label-text">Long description</span>
+		</label>
 		<textarea
 			class="textarea"
 			placeholder="Long description"
@@ -27,5 +36,5 @@
 			value={longDescription}
 			rows={5}
 		/>
-	</label>
+	</div>
 </div>

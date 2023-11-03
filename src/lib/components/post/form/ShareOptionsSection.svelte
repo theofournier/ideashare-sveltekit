@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { PrivacyType, ShareType } from '$lib/data/post';
-	import { SlideToggle } from '@skeletonlabs/skeleton';
 	import ShareOptionItem from './ShareOptionItem.svelte';
 
 	export let privacy: PrivacyType | null = null;
@@ -17,17 +16,28 @@
 
 <div id="share-options" class="flex flex-col gap-2">
 	<div>
-		<SlideToggle
-			name="private"
-			checked={privacy === 'private'}
-			active="bg-secondary-500"
-			class="list-option"
-		>
-			<p>Private</p>
-		</SlideToggle>
-		<SlideToggle name="anonymous" checked={!!anonymous} active="bg-secondary-500" class="list-option">
-			<p>Anonymous</p>
-		</SlideToggle>
+		<div class="form-control hover:bg-neutral/10 rounded-btn">
+			<label class="cursor-pointer label justify-normal gap-2">
+				<input
+					type="checkbox"
+					name="private"
+					class="toggle toggle-secondary checked:bg-none"
+					checked={privacy === 'private'}
+				/>
+				<span class="label-text">Private</span>
+			</label>
+		</div>
+		<div class="form-control hover:bg-neutral/10 rounded-btn">
+			<label class="label cursor-pointer justify-normal gap-2">
+				<input
+					type="checkbox"
+					name="anonymous"
+					class="toggle toggle-secondary checked:bg-none"
+					checked={!!anonymous}
+				/>
+				<span class="label-text">Anonymous</span>
+			</label>
+		</div>
 	</div>
 	<div class="grid grid-cols-1 md:grid-cols-2 gap-2">
 		<ShareOptionItem title="Like" name="like" values={['all', 'none']} defaultValue={like} />
