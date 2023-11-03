@@ -5,9 +5,12 @@
 	import ShareOptionsSection from '$lib/components/post/form/ShareOptionsSection.svelte';
 	import FormPostSection from '$lib/components/post/form/FormPostSection.svelte';
 	import { Accordion, AppBar, popup } from '@skeletonlabs/skeleton';
+	import { getModalStore } from '@skeletonlabs/skeleton';
 	import CategoryCard from '$lib/components/post/form/CategoryCard.svelte';
 
 	export let data;
+
+	const modalStore = getModalStore();
 </script>
 
 <div>

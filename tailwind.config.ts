@@ -15,7 +15,7 @@ const config = {
 	plugins: [
 		forms,
 		skeleton({
-			themes: { preset: ['wintry'] }
+			themes: { preset: ['skeleton'] }
 		})
 	]
 } satisfies Config;
