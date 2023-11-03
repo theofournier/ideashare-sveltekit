@@ -21,7 +21,7 @@
 				<input
 					type="checkbox"
 					name="private"
-					class="toggle toggle-secondary checked:bg-none"
+					class="toggle toggle-secondary"
 					checked={privacy === 'private'}
 				/>
 				<span class="label-text">Private</span>
@@ -32,7 +32,7 @@
 				<input
 					type="checkbox"
 					name="anonymous"
-					class="toggle toggle-secondary checked:bg-none"
+					class="toggle toggle-secondary"
 					checked={!!anonymous}
 				/>
 				<span class="label-text">Anonymous</span>

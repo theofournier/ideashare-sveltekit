@@ -28,7 +28,7 @@
 	<div class="join">
 		{#each values as value (value)}
 			<input
-				class="join-item btn btn-outline btn-sm checked:!bg-secondary checked:!border-secondary checked:bg-none"
+				class="join-item btn btn-outline btn-sm checked:!bg-secondary checked:!border-secondary"
 				type="radio"
 				{name}
 				aria-label={getLabel(value)}
